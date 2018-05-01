@@ -8,7 +8,7 @@
 * 畫面配置(架構)
 * 首頁、排行榜、門市查詢、通知、會員
 * 下方按鈕色碼 (灰色)#595656 (綠色)#B4B51F
-
+* 圖片自動縮放
 ![清心App總覽](/清心APP總覽.png)
 
 # React Native專案使用物件
@@ -21,3 +21,8 @@
  
 ## 重點註記:
  - `paddingTop`是APP畫面與最頂距離(包含狀態列)
+
+
+
+ - QRCode震動路徑
+ node_modules\react-native\ReactAndroid\src\main

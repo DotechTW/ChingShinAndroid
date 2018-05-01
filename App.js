@@ -1,28 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image} from 'react-native';
+import { StyleSheet, Text, View ,Image,TouchableOpacity,
+    Linking,} from 'react-native';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
+import { Button,Header } from 'react-native-elements';
+
 export default class App extends React.Component {
   render() {
     return (
       <View style={{flex:1,paddingTop:25}}>
       {/* paddingTop是APP畫面最頂距離 */}
-      <NavigationBar title={titleConfig} />
+      <NavigationBar title={titleConfig}/>
          <IndicatorViewPager
-					style={{flex:1, backgroundColor:'white'}} indicator={this._renderTabIndicator()}>
-                    <View style={{backgroundColor:'cadetblue'}}>
+					style={styles.header} indicator={this._renderTabIndicator()}>
+                    <View style={styles.page1}>
                         <Text>page one</Text>
                     </View>
-                    <View style={{backgroundColor:'cornflowerblue'}}>
+                    <View style={styles.page2}>
+                        <Image source={require('./assets/activity.png')}/>
                         <Text>page two</Text>
                     </View>
-                    <View style={{backgroundColor:'#1AA094'}}>
+                    <View style={styles.page3}>
                         <Text>page three</Text>
                     </View>
-                    <View style={{backgroundColor:'#1A8094'}}>
+                    <View style={styles.page4}>
                         <Text>page four</Text>
+                        
                     </View>
-                    <View style={{backgroundColor:'#1AA894'}}>
+                    <View style={styles.page5}>
                         <Text>page five</Text>
                     </View>
                 </IndicatorViewPager>
@@ -37,11 +42,11 @@ export default class App extends React.Component {
             iconSource: require('./assets/index_btn.png') ,
             selectedIconSource: require('./assets/index_btn_click.png'),
         },{
-            text: '排行榜',
+            text: '排行',
             iconSource: require('./assets/best_btn.png'),
             selectedIconSource: require('./assets/best_btn_click.png')
         },{
-            text: '門市查詢',
+            text: '門市',
             iconSource: require('./assets/check_btn.png'),
             selectedIconSource: require('./assets/check_btn_click.png')
         },{
@@ -63,15 +68,49 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  TabIndicatorBtn:{
+  },centerText: {
     flex: 1,
-    // flexDirection: 'row',
-    height: 30,
-    width:30,
-    // alignSelf: 'auto',
-    // justifyContent: 'center',
+    fontSize: 18,
+    padding: 32,
+    color: '#777',
+  },textBold: {
+    fontWeight: '500',
+    color: '#000',
+  },buttonText: {
+    fontSize: 21,
+    color: 'rgb(0,122,255)',
+  },buttonTouchable: {
+    padding: 16,
+  },header:{
+    flex:1,
+    backgroundColor:'#F6F6F6',
+    
     // alignItems: 'center',
+    // justifyContent: 'center',
+    // backgroundColor:'cadetblue',
+  },page1:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'cadetblue',
+  },page2:{
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'cornflowerblue',
+    // resizeMode :'cover '
+
+  },page3:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#1AA094',
+  },page4:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#1A8094',
+  },page5:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#1AA894',
   },
 });
 
@@ -82,4 +121,5 @@ const rightButtonConfig = {
 
 const titleConfig = {
   title: '清心福全',
+  //Image: require('./assets/title_background.png')
 };
