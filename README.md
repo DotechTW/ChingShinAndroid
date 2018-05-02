@@ -17,7 +17,7 @@
  * [flux](https://ithelp.ithome.com.tw/articles/10188232)
  * [24 小時，React 快速入門](https://github.com/liscott327/react-quick-tutorial)
  * [Hello JS - JavaScript 全端開發即戰力班](https://github.com/liscott327/hellojs-gitbook)
- 
+ * [清心內鑲FB](https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=)
  
 ## 重點註記:
  - `paddingTop`是APP畫面與最頂距離(包含狀態列)

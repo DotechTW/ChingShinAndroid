@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image,TouchableOpacity,
-    Linking,WebView } from 'react-native';
+import { StyleSheet, Text, View ,Image,TouchableOpacity,Linking,WebView } from 'react-native';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
 import { Button,Header } from 'react-native-elements';
@@ -11,26 +10,17 @@ export default class App extends React.Component {
       <View style={{flex:1,paddingTop:25}}>
       {/* paddingTop是APP畫面最頂距離 */}
       <NavigationBar title={titleConfig}/>
-         <IndicatorViewPager
-					style={styles.header} indicator={this._renderTabIndicator()}>
+         <IndicatorViewPager style={styles.header} indicator={this._renderTabIndicator()}>
                     <View style={styles.page1}>
-                    <Text>鑲入清心FB粉絲團網頁</Text>
-                    {/* 鑲入網頁 */}
-                    <WebView
-        source={{uri: 'https://github.com/facebook/react-native'}}
-        style={{marginTop: 20}}
-      />
-                        {/* <WebView style={styles.webview_style} 
-                          source={'http://www.lcode.org/%E3%80%90react-native%E5%BC%80%E5%8F%91%E3%80%91react-native%E6%8E%A7%E4%BB%B6%E4%B9%8Bwebview%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%AE%9E%E4%BE%8B%E4%BD%BF%E7%94%A822/'}
-                          startInLoadingState={true}
-                          domStorageEnabled={true}
-                          javaScriptEnabled={true}
-                          >
-                          </WebView> */}
+                        {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
+                        <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=380&height=600'}}
+                            //style={{height: '100%',width:'100%'}}
+                            scalesPageToFit={true}
+                          /> 
                     </View>
                     <View style={styles.page2}>
-                        <Image source={require('./assets/activity.png')} style={{width: 400, height: 550}}/>
-                        {/* 這裡要調圖片大小 */}
+                        <Image source={require('./assets/activity.png')} style={{width: 384, height: 520}}/>
+                        {/* 這裡要調圖片大小 這張圖480*650*/}
                         {/* <Text>page two</Text> */}
                     </View>
                     <View style={styles.page3}>
@@ -103,8 +93,8 @@ const styles = StyleSheet.create({
     // backgroundColor:'cadetblue',
   },page1:{
     flex:1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     backgroundColor:'cadetblue',
   },page2:{
     flex:1,
