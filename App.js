@@ -13,7 +13,7 @@ export default class App extends React.Component {
          <IndicatorViewPager style={styles.header} indicator={this._renderTabIndicator()}>
                     <View style={styles.page1}>
                         {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-                        <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=380&height=600'}}
+                        <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600'}}
                             // style={{height: '100%',width:'100%'}}
                             // scalesPageToFit={true}
                           /> 
