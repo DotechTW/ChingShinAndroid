@@ -20,7 +20,8 @@
  * [清心內鑲FB](https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=)
  * [React Native Material UI](https://github.com/xotahal/react-native-material-ui)
  * [色碼表](https://www.toodoo.com/db/color.html)
-
+ * [輸出APK](https://stackoverflow.com/questions/44301539/react-native-generate-apk-and-ipa-using-expo)
+ * 
 
 
 
