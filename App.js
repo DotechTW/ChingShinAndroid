@@ -2,21 +2,23 @@ import React from 'react';
 import { StyleSheet, Text, View ,Image,TouchableOpacity,Linking,WebView } from 'react-native';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
-import { Button,Header } from 'react-native-elements';
+import { Button,Header,Icon } from 'react-native-elements';
+// import { Button, Card } from 'react-native-material-design';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex:1,paddingTop:25}}>
+      <View style={{flex:1,paddingTop:25,backgroundColor:'#F6F6F6'}}>
+        <Image source={require('./assets/title_background.png')} style={styles.headerImg}/>
       {/* paddingTop是APP畫面最頂距離 */}
-      <NavigationBar title={titleConfig}/>
+      {/* <NavigationBar title={titleConfig}/> */}
          <IndicatorViewPager style={styles.header} indicator={this._renderTabIndicator()}>
                     <View style={styles.page1}>
                         {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-                        <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600'}}
+                        {/* <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600'}}
                             // style={{height: '100%',width:'100%'}}
                             // scalesPageToFit={true}
-                          /> 
+                          />  */}
                     </View>
                     <View style={styles.page2}>
                         <Image source={require('./assets/activity.png')} style={{width: 384, height: 520}}/>
@@ -31,7 +33,34 @@ export default class App extends React.Component {
                         
                     </View>
                     <View style={styles.page5}>
-                        <Text>page five</Text>
+                        <Button
+                            large
+                            color='#444444'
+                            backgroundColor='#B4B51F'
+                            borderRadius= {10}
+                            fontSize={30}
+                            // icon={{name: 'dog'}}
+                            title='登入' />
+                        <Text> </Text>
+                        <Button
+                            large
+                            color='#444444'
+                            backgroundColor='#B4B51F'
+                            borderRadiusColor='#444444'
+                            borderRadius= {10}
+                            fontSize={30}
+                            // icon={{name: 'code'}}
+                            title='註冊' />
+                        <Text> </Text>
+                        <Button
+                            color='#444444'
+                            backgroundColor='#FFFFFF'
+                            borderRadiusColor='#444444'
+                            borderRadius= {10}
+                            fontSize={15}
+                            // icon={{name: 'code'}}
+                            title='忘記密碼'  />
+                        {/* <Text>會員頁面</Text> */}
                     </View>
                 </IndicatorViewPager>
       </View>
@@ -84,6 +113,15 @@ const styles = StyleSheet.create({
     color: 'rgb(0,122,255)',
   },buttonTouchable: {
     padding: 16,
+  },headerImg:{
+    
+    //最上面的那條
+    height:34,
+    width:153,
+    // backgroundColor:'#F6F6F6',
+    //  alignItems: 'center',
+    alignItems: 'center',
+    marginLeft: '30%',
   },header:{
     flex:1,
     backgroundColor:'#F6F6F6',
@@ -100,7 +138,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'cornflowerblue',
+    // backgroundColor:'cornflowerblue',
     // resizeMode :'cover'
 
   },page3:{
@@ -109,12 +147,12 @@ const styles = StyleSheet.create({
     backgroundColor:'#1AA094',
   },page4:{
     alignItems: 'center',
-    justifyContent: 'center',
+    //justifyContent: 'center',
     backgroundColor:'#1A8094',
   },page5:{
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'#1AA894',
+     backgroundColor:'#FFFFFF',
   },
 });
 
@@ -125,5 +163,6 @@ const rightButtonConfig = {
 
 const titleConfig = {
   title: '清心福全',
-  icon: require('./assets/title_background.png'),
+  // icon: require('./assets/title_background.png'),
 };
+// 1534*338  306*67
