@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     // backgroundColor:'#F6F6F6',
     //  alignItems: 'center',
     alignItems: 'center',
-    marginLeft: '30%',
+    marginLeft: '27%',//頂端列圖片置中
   },header:{
     flex:1,
     backgroundColor:'#F6F6F6',
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     flex:1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor:'cornflowerblue',
+    backgroundColor:'cornflowerblue',
     // resizeMode :'cover'
 
   },page3:{
