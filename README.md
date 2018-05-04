@@ -7,7 +7,7 @@
 ## 畫面
 * 畫面配置(架構)
 * 首頁、排行榜、門市查詢、通知、會員
-* 下方按鈕色碼 (灰色)#595656 (綠色)#B4B51F
+* 下方按鈕色碼 (灰色)#DCDDDD (綠色)#B4B51F
 * 圖片自動縮放
 ![清心App總覽](/清心APP總覽.png)
 
@@ -19,14 +19,14 @@
  * [Hello JS - JavaScript 全端開發即戰力班](https://github.com/liscott327/hellojs-gitbook)
  * [清心內鑲FB](https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=)
  * [React Native Material UI](https://github.com/xotahal/react-native-material-ui)
- * []()
+ * [色碼表](https://www.toodoo.com/db/color.html)
 
 
 
 
 ## 重點註記:
  - `paddingTop`是APP畫面與最頂距離(包含狀態列)
-
+ - 改下方按鈕底色`...\expo test\chinshinrn\node_modules\rn-viewpager\viewpager\indicator\PagerTabIndicator.j`
 
 
  - QRCode震動路徑

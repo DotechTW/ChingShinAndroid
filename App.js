@@ -8,7 +8,7 @@ import { Button,Header,Icon } from 'react-native-elements';
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex:1,paddingTop:25,backgroundColor:'#F6F6F6'}}>
+      <View style={{flex:1,paddingTop:25,backgroundColor:'#DCDDDD'}}>
         <Image source={require('./assets/title_background.png')} style={styles.headerImg}/>
       {/* paddingTop是APP畫面最頂距離 */}
       {/* <NavigationBar title={titleConfig}/> */}
@@ -137,8 +137,8 @@ const styles = StyleSheet.create({
   },page2:{
     flex:1,
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor:'cornflowerblue',
+    // justifyContent: 'center',
+    backgroundColor:'#AED49D',
     // resizeMode :'cover'
 
   },page3:{
