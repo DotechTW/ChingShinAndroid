@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image,TouchableOpacity,Linking,WebView } from 'react-native';
+import { StyleSheet, Text, View ,Image,TouchableOpacity,Linking,WebView,Dimensions,LayoutAnimation,StatusBar,Alert, } from 'react-native';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
 import { Button,Header,Icon } from 'react-native-elements';
+import { BarCodeScanner, Permissions } from 'expo';
 // import { Button, Card } from 'react-native-material-design';
-import {Dimensions} from 'react-native';// 裝置長寬
+//import {Dimensions} from 'react-native';// 裝置長寬
 var {height, width} = Dimensions.get('window');
 export default class App extends React.Component {
   render() {
@@ -28,6 +29,10 @@ export default class App extends React.Component {
                     </View>
                     <View style={page.check}>
                         <Text>page three</Text>
+
+                        {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
+
+
                     </View>
                     <View style={page.notice}>
                         <Text>page four</Text>

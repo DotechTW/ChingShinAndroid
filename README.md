@@ -21,8 +21,8 @@
  * [React Native Material UI](https://github.com/xotahal/react-native-material-ui)
  * [色碼表](https://www.toodoo.com/db/color.html)
  * [輸出APK](https://stackoverflow.com/questions/44301539/react-native-generate-apk-and-ipa-using-expo)
- * 
-
+ * [地理位置](https://facebook.github.io/react-native/docs/geolocation.html)
+ * [QRCode範例](https://snack.expo.io/BJlFFcp2g)
 
 
 ## 重點註記:
