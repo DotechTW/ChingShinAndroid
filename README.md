@@ -29,6 +29,7 @@
  - `paddingTop`是APP畫面與最頂距離(包含狀態列)
  - 改下方按鈕底色`...\expo test\chinshinrn\node_modules\rn-viewpager\viewpager\indicator\PagerTabIndicator.j`
 
-
- - QRCode震動路徑
- node_modules\react-native\ReactAndroid\src\main
+ - `alignItems: 'center'`是水平置中
+ - `justifyContent: 'center'`是垂直置中
+ - QRCode震動路徑`node_modules\react-native\ReactAndroid\src\main`
+ - 

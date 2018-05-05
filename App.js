@@ -4,7 +4,8 @@ import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndi
 import NavigationBar from 'react-native-navbar';
 import { Button,Header,Icon } from 'react-native-elements';
 // import { Button, Card } from 'react-native-material-design';
-
+import {Dimensions} from 'react-native';// 裝置長寬
+var {height, width} = Dimensions.get('window');
 export default class App extends React.Component {
   render() {
     return (
@@ -12,27 +13,27 @@ export default class App extends React.Component {
         <Image source={require('./assets/title_background.png')} style={styles.headerImg}/>
       {/* paddingTop是APP畫面最頂距離 */}
       {/* <NavigationBar title={titleConfig}/> */}
-         <IndicatorViewPager style={styles.header} indicator={this._renderTabIndicator()}>
-                    <View style={styles.page1}>
+         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
+                    <View style={page.index}>
                         {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-                        {/* <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600'}}
+                        <WebView source={{uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600'}}
                             // style={{height: '100%',width:'100%'}}
                             // scalesPageToFit={true}
-                          />  */}
+                          /> 
                     </View>
-                    <View style={styles.page2}>
-                        <Image source={require('./assets/activity.png')} style={{width: 384, height: 520}}/>
-                        {/* 這裡要調圖片大小 這張圖480*650*/}
-                        {/* <Text>page two</Text> */}
+                    <View style={page.best}>
+                        <Image source={require('./assets/activity.png')} style={{width: Dimensions.get('window').width,height:Dimensions.get('window').height*0.7}}/>
+                        {/* 這裡要調圖片大小 這張圖480*650* 384*520*/}
+                        
                     </View>
-                    <View style={styles.page3}>
+                    <View style={page.check}>
                         <Text>page three</Text>
                     </View>
-                    <View style={styles.page4}>
+                    <View style={page.notice}>
                         <Text>page four</Text>
                         
                     </View>
-                    <View style={styles.page5}>
+                    <View style={page.member}>
                         <Button
                             large
                             color='#444444'
@@ -49,8 +50,12 @@ export default class App extends React.Component {
                             borderRadiusColor='#444444'
                             borderRadius= {10}
                             fontSize={30}
+                            
+
                             // icon={{name: 'code'}}
-                            title='註冊' />
+                            title='註冊'
+                          
+                            marginHorizontal='10' />
                         <Text> </Text>
                         <Button
                             color='#444444'
@@ -58,6 +63,7 @@ export default class App extends React.Component {
                             borderRadiusColor='#444444'
                             borderRadius= {10}
                             fontSize={15}
+
                             // icon={{name: 'code'}}
                             title='忘記密碼'  />
                         {/* <Text>會員頁面</Text> */}
@@ -66,8 +72,9 @@ export default class App extends React.Component {
       </View>
     );
   }
-  _renderTabIndicator() {
+  renderTabIndicator() {
             // 首頁、排行榜、門市查詢、通知、會員
+            // index、best、check、notice、member
             // * 下方按鈕色碼 (灰色)#595656 (綠色)#B4B51F
     let tabs = [{
             text: '首頁',
@@ -113,8 +120,8 @@ const styles = StyleSheet.create({
     color: 'rgb(0,122,255)',
   },buttonTouchable: {
     padding: 16,
-  },headerImg:{
-    
+  },
+  headerImg:{
     //最上面的那條
     height:34,
     width:153,
@@ -122,39 +129,49 @@ const styles = StyleSheet.create({
     //  alignItems: 'center',
     alignItems: 'center',
     marginLeft: '27%',//頂端列圖片置中
-  },header:{
+  },
+  header:{
     flex:1,
     backgroundColor:'#F6F6F6',
-    
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // backgroundColor:'cadetblue',
-  },page1:{
-    flex:1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    backgroundColor:'cadetblue',
-  },page2:{
-    flex:1,
-    alignItems: 'center',
-    // justifyContent: 'center',
-    backgroundColor:'#AED49D',
-    // resizeMode :'cover'
+  },
+})
 
-  },page3:{
+
+
+// 頁面樣式index、best、check、notice、member
+  const page = StyleSheet.create({
+  index:{
+    flex:1,
+    backgroundColor:'cadetblue',
+  },
+  best:{
+    flex:1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#AED49D',
+    //resizeMode :'center'
+  },
+  check:{
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor:'#1AA094',
-  },page4:{
+  },
+  notice:{
     alignItems: 'center',
     //justifyContent: 'center',
     backgroundColor:'#1A8094',
-  },page5:{
+  },
+  member:{
     alignItems: 'center',
     justifyContent: 'center',
      backgroundColor:'#FFFFFF',
   },
 });
+
+
+
+
 
 const rightButtonConfig = {
   title: 'Next',
