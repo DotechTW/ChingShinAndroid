@@ -1,15 +1,67 @@
 import React from 'react';
-import { StyleSheet, Text, View ,Image,TouchableOpacity,Linking,WebView,Dimensions,LayoutAnimation,StatusBar,Alert, } from 'react-native';
+import { StyleSheet, 
+  Text, 
+  View ,
+  Image,
+  TouchableOpacity,
+  Linking,
+  WebView,
+  Dimensions,
+  LayoutAnimation,
+  StatusBar,
+  Alert,
+
+ } from 'react-native';
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
-import { Button,Header,Icon } from 'react-native-elements';
+import { Button,Header,Icon,ListItem } from 'react-native-elements';
 import { BarCodeScanner, Permissions } from 'expo';
+import MapView from 'react-native-maps';
+
+
+
 // import { Button, Card } from 'react-native-material-design';
 //import {Dimensions} from 'react-native';// 裝置長寬
 var {height, width} = Dimensions.get('window');
+var list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+
+]
+
+
+
+
 export default class App extends React.Component {
+  // getInitialState() {
+  //   return {
+  //     region: {
+  //       latitude: 37.78825,
+  //       longitude: -122.4324,
+  //       latitudeDelta: 0.0922,
+  //       longitudeDelta: 0.0421,
+  //     },
+  //   };
+  // }
+  
+  // onRegionChange(region) {
+  //   this.setState({ region });
+  // }
+  
+  
+  
+  
   render() {
     return (
+      
       <View style={{flex:1,paddingTop:25,backgroundColor:'#DCDDDD'}}>
         <Image source={require('./assets/title_background.png')} style={styles.headerImg}/>
       {/* paddingTop是APP畫面最頂距離 */}
@@ -28,15 +80,56 @@ export default class App extends React.Component {
                         
                     </View>
                     <View style={page.check}>
-                        <Text>page three</Text>
+                        {/* <Text>page three</Text> */}
+                        
+                        {/* <MapView
+                          region={this.state.region}
+                          onRegionChange={this.onRegionChange}
+                        /> */}
+
+                        <MapView
+                          initialRegion={{
+                            latitude: 37.78825,
+                            longitude: -122.4324,
+                            latitudeDelta: 0.0922,
+                            longitudeDelta: 0.0421,
+                          }}
+                        />
+                          
+
+                            <View>
+                              {
+                                list.map((l, i) => (
+                                  <ListItem
+                                    key={i}
+                                    leftAvatar={{ source: { uri: l.avatar_url } }}
+                                    title={l.name}
+                                    subtitle={l.subtitle}
+                                  />
+                                ))
+                              }
+                            </View>
 
                         {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
-
+                        
+                        
+                        
+                        
+                        {/* 塞入itemlist做附近店面列表  */}
 
                     </View>
                     <View style={page.notice}>
-                        <Text>page four</Text>
-                        
+                        <Text style={{fontSize:30}}>2018 集點活動</Text>
+                        <Image source={require('./assets/banner-72.png')} style={{width:300,height:185}} />
+                        <Text> </Text>
+                        <Button
+                          large
+                          color='#444444'
+                          backgroundColor='#B4B51F'
+                          borderRadius= {10}
+                          fontSize={30}
+                          title='掃描集點'
+                        />
                     </View>
                     <View style={page.member}>
                         <Button
@@ -50,13 +143,14 @@ export default class App extends React.Component {
                         <Text> </Text>
                         <Button
                             large
-                            color='#444444'
-                            backgroundColor='#B4B51F'
-                            borderRadiusColor='#444444'
-                            borderRadius= {10}
-                            fontSize={30}
-                            
-
+                            buttonStyle={{
+                              backgroundColor: "rgba(92, 99,216, 1)",
+                              width: 300,
+                              height: 45,
+                              borderColor: "red",
+                              borderWidth: 5,
+                              borderRadius: 5
+                            }}
                             // icon={{name: 'code'}}
                             title='註冊'
                           
@@ -105,6 +199,9 @@ export default class App extends React.Component {
     return <PagerTabIndicator tabs={tabs} />;
 }
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -160,12 +257,12 @@ const styles = StyleSheet.create({
   check:{
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'#1AA094',
+    //backgroundColor:'#1AA094',
   },
   notice:{
     alignItems: 'center',
     //justifyContent: 'center',
-    backgroundColor:'#1A8094',
+    //backgroundColor:'#1A8094',
   },
   member:{
     alignItems: 'center',
