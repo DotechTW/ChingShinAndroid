@@ -15,15 +15,15 @@ import { StyleSheet,
 import {PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator} from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
 import { Button,Header,Icon,ListItem } from 'react-native-elements';
-import { BarCodeScanner, Permissions } from 'expo';
-import MapView from 'react-native-maps';
+import { BarCodeScanner, Permissions,MapView } from 'expo';
+//import MapView from 'expo';
 
 
 
 // import { Button, Card } from 'react-native-material-design';
 //import {Dimensions} from 'react-native';// 裝置長寬
 var {height, width} = Dimensions.get('window');
-var list = [
+const list = [
   {
     name: 'Amy Farha',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
@@ -113,26 +113,29 @@ export default class App extends React.Component {
                         {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
                         
                         
-                        
-                        
+
+
+
+
+
                         {/* 塞入itemlist做附近店面列表  */}
 
                     </View>
                     <View style={page.notice}>
                         <Text style={{fontSize:30}}>2018 集點活動</Text>
-                        <Image source={require('./assets/banner-72.png')} style={{width:300,height:185}} />
+                        <Image source={require('./assets/banner-72.png')} style={{width:350,height:185}} />
                         <Text> </Text>
                         <Button
                           buttonStyle={{
                             backgroundColor: "white",
-                            width: 200,
-                            height: 70,
+                            width: 150,
+                            height: 50,
                             borderColor: "#6E6661",
                             borderWidth: 1,
                             borderRadius: 5,
                           }}
                           title='掃描集點'
-                          fontSize={30}
+                          fontSize={20}
                           color='#6E6661'
                         />
                     </View>

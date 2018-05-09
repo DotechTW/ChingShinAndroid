@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19001,
-  "packagerPort": 19002,
-  "packagerPid": 15572,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 22292,
   "expoServerNgrokUrl": "https://nr-3as.liscott327.chinshinrn.exp.direct",
   "packagerNgrokUrl": "https://packager.nr-3as.liscott327.chinshinrn.exp.direct",
-  "ngrokPid": 4040
+  "ngrokPid": 18020
 }

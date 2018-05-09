@@ -23,7 +23,7 @@
  * [輸出APK](https://stackoverflow.com/questions/44301539/react-native-generate-apk-and-ipa-using-expo)
  * [地理位置](https://facebook.github.io/react-native/docs/geolocation.html)
  * [QRCode範例](https://snack.expo.io/BJlFFcp2g)
-
+ * [Button](https://react-native-training.github.io/react-native-elements/docs/button.html)
 
 ## 重點註記:
  - `paddingTop`是APP畫面與最頂距離(包含狀態列)
