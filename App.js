@@ -123,38 +123,47 @@ export default class App extends React.Component {
                         <Image source={require('./assets/banner-72.png')} style={{width:300,height:185}} />
                         <Text> </Text>
                         <Button
-                          large
-                          color='#444444'
-                          backgroundColor='#B4B51F'
-                          borderRadius= {10}
-                          fontSize={30}
+                          buttonStyle={{
+                            backgroundColor: "white",
+                            width: 200,
+                            height: 70,
+                            borderColor: "#6E6661",
+                            borderWidth: 1,
+                            borderRadius: 5,
+                          }}
                           title='掃描集點'
+                          fontSize={30}
+                          color='#6E6661'
                         />
                     </View>
                     <View style={page.member}>
                         <Button
-                            large
-                            color='#444444'
-                            backgroundColor='#B4B51F'
-                            borderRadius= {10}
+                            buttonStyle={{
+                              backgroundColor: "white",
+                              width: 200,
+                              height: 70,
+                              borderColor: "#6E6661",
+                              borderWidth: 1,
+                              borderRadius: 5,
+                            }}
+                            title='登入'
                             fontSize={30}
-                            // icon={{name: 'dog'}}
-                            title='登入' />
+                            color='#6E6661'
+                            />
                         <Text> </Text>
                         <Button
-                            large
                             buttonStyle={{
-                              backgroundColor: "rgba(92, 99,216, 1)",
-                              width: 300,
-                              height: 45,
-                              borderColor: "red",
-                              borderWidth: 5,
-                              borderRadius: 5
+                              backgroundColor: "white",
+                              width: 200,
+                              height: 70,
+                              borderColor: "#6E6661",
+                              borderWidth: 1,
+                              borderRadius: 5,
                             }}
-                            // icon={{name: 'code'}}
                             title='註冊'
-                          
-                            marginHorizontal='10' />
+                            fontSize={30}
+                            color='#6E6661'
+                           />
                         <Text> </Text>
                         <Button
                             color='#444444'
