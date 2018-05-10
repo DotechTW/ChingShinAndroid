@@ -25,14 +25,14 @@ import { BarCodeScanner, Permissions,MapView } from 'expo';
 var {height, width} = Dimensions.get('window');
 const list = [
   {
-    name: 'Amy Farha',
+    name: '988 公園店',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
+    subtitle: '台南市北區公園路822-1號'
   },
   {
-    name: 'Chris Jackson',
+    name: '100 育德店',
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
+    subtitle: '台南市北區育德路520號'
   },
 
 ]
@@ -92,8 +92,8 @@ export default class App extends React.Component {
                           initialRegion={{
                             latitude: 24.175373,
                             longitude: 120.690486,
-                            latitudeDelta: 0.0922,
-                            longitudeDelta: 0.0421,
+                            latitudeDelta: 0.005,
+                            longitudeDelta: 0.005,
                           }}
                         />
                           
