@@ -34,6 +34,21 @@ const list = [
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
     subtitle: '台南市北區育德路520號'
   },
+  {
+    name: '301 四平店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區后庄路71-3號'
+  },
+  {
+    name: '358 北平店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區北平區三段151號'
+  },
+  {
+    name: '456 后庄店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區后庄路22號'
+  },
 
 ]
 
@@ -92,9 +107,10 @@ export default class App extends React.Component {
                           initialRegion={{
                             latitude: 24.175373,
                             longitude: 120.690486,
-                            latitudeDelta: 0.005,
-                            longitudeDelta: 0.005,
+                            latitudeDelta: 0.0005,
+                            longitudeDelta: 0.0005,
                           }}
+                          
                         />
                           
 

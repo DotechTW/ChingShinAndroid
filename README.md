@@ -32,4 +32,4 @@
  - `alignItems: 'center'`是水平置中
  - `justifyContent: 'center'`是垂直置中
  - QRCode震動路徑`node_modules\react-native\ReactAndroid\src\main`
- - 
+ - 輸出指令apk`exp ba`
