@@ -88,9 +88,10 @@ export default class App extends React.Component {
                         /> */}
 
                         <MapView
+                          style={{ flex: 1 }}
                           initialRegion={{
-                            latitude: 37.78825,
-                            longitude: -122.4324,
+                            latitude: 24.175373,
+                            longitude: 120.690486,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                           }}
@@ -213,8 +214,6 @@ export default class App extends React.Component {
 }
 
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -267,8 +266,8 @@ const styles = StyleSheet.create({
     //resizeMode :'center'
   },
   check:{
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'center',
+    //justifyContent: 'center',
     //backgroundColor:'#1AA094',
   },
   notice:{
