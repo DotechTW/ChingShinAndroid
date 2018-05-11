@@ -71,13 +71,16 @@ export default class App extends React.Component {
   //   this.setState({ region });
   // }
   
-  
+      onPressButton() {
+        Alert.alert("你已經按下按鈕囉")
+      }
+
   
   
   render() {
     return (
       
-      <View style={{flex:1,paddingTop:25,backgroundColor:'#DCDDDD'}}>
+      <View style={{flex:1, paddingTop:25, backgroundColor:'#DCDDDD'}}>
         <Image source={require('./assets/title_background.png')} style={styles.headerImg}/>
       {/* paddingTop是APP畫面最頂距離 */}
       {/* <NavigationBar title={titleConfig}/> */}
@@ -113,7 +116,7 @@ export default class App extends React.Component {
                           
                         />
                           
-
+                    {/* 塞入itemlist做附近店面列表  */}
                             <View>
                               {
                                 list.map((l, i) => (
@@ -135,7 +138,7 @@ export default class App extends React.Component {
 
 
 
-                        {/* 塞入itemlist做附近店面列表  */}
+                        
 
                     </View>
                     <View style={page.notice}>
@@ -154,6 +157,10 @@ export default class App extends React.Component {
                           title='掃描集點'
                           fontSize={20}
                           color='#6E6661'
+                        // 按鈕
+                        onPress={this.onPressButton}
+                       
+                        
                         />
                     </View>
                     <View style={page.member}>
