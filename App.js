@@ -85,47 +85,46 @@ export default class App extends React.Component {
         {/* <NavigationBar title={titleConfig}/> */}
         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
       <View style={page.index}>
+        
       {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=350&height=600' }}
+      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=' }}
 							// style={{height: '100%',width:'100%'}}
 							// scalesPageToFit={true}
 						/>
     </View>
       <View style={page.best}>
-      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height * 0.9 }} />
+      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
 
     </View>
       <View style={page.check}>
-
-
       {/* <MapView
-                          region={this.state.region}
-                          onRegionChange={this.onRegionChange}
-                        /> */}
+         region={this.state.region}SS
+         onRegionChange={this.onRegionChange}
+       /> */}
 
       <MapView
       style={{ flex: 1 }}
       initialRegion={{
 								latitude: 24.175373,
 								longitude: 120.690486,
-								latitudeDelta: 0.0005,
-								longitudeDelta: 0.0005,
+								latitudeDelta: 0.005,
+								longitudeDelta: 0.005,
 							}}
 						/>
 
       {/* // 塞入itemlist做附近店面列表   */}
-      <View>
+      <View style={{flex: 1}}>
       {
-								list.map((l, i) => (
-  <ListItem
-    key={i}
-    leftAvatar={{ source: { uri: l.avatar_url } }}
-    title={l.name}
-    subtitle={l.subtitle}
-									/>
-								))
-							}
+				list.map((l, i) => (
+        <ListItem
+          key={i}
+          leftAvatar={{ source: { uri: l.avatar_url } }}
+          title={l.name}
+          subtitle={l.subtitle}
+        />
+        ))
+			}
     </View>
 
       {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
@@ -134,10 +133,10 @@ export default class App extends React.Component {
     </View>
       <View style={page.notice}>
       <Text style={{ fontSize: 30 }}>2018 集點活動</Text>
-      <Image source={require('./assets/banner-72.png')} style={{ width: Dimensions.get('window').width, height: 185 }} />
+      <Image source={require('./assets/banner-72.png')} style={{ width: Dimensions.get('window').width, height: 130,resizeMode: Image.resizeMode.stretch }} />
       <Text />
       <Button
-      buttonStyle={{
+        buttonStyle={{
 								backgroundColor: 'white',
 								width: 150,
 								height: 50,
@@ -289,6 +288,7 @@ const page = StyleSheet.create({
     // backgroundColor:'#1AA094',
   },
   notice: {
+    flex: 1,
     alignItems: 'center',
     // justifyContent: 'center',
     // backgroundColor:'#1A8094',
