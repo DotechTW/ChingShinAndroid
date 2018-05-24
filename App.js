@@ -51,6 +51,11 @@ const list = [
   },
 
 ];
+//定義裝置長寬
+
+
+
+
 
 
 
@@ -88,7 +93,7 @@ export default class App extends React.Component {
       <View style={page.index}>
         
       {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width=' }}
+      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+height }}
 							// style={{height: '100%',width:'100%'}}
 							// scalesPageToFit={true}
 						/>
