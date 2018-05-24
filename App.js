@@ -12,12 +12,13 @@ import {
   StatusBar,
   Alert,
   ScrollView,
+  Platform,
 } from 'react-native';
 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
 import { Button, Header, Icon, ListItem } from 'react-native-elements';
-import { BarCodeScanner, Permissions, MapView } from 'expo';
+import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
 // import MapView from 'expo';
 // import { Button, Card } from 'react-native-material-design' ;
 // import {Dimensions} from 'react-native' ;
@@ -61,28 +62,59 @@ const list = [
 
 
 export default class App extends React.Component {
-  // getInitialState() {
-  //   return {
-  //     region: {
-  //       latitude: 37.78825,
-  //       longitude: -122.4324,
-  //       latitudeDelta: 0.0922,
-  //       longitudeDelta: 0.0421,
-  //     },
-  //   };
-  // }
+  state = {
+    location: null,
+    errorMessage: null,
+    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0922, longitudeDelta: 0.0421 },
+    locationResult: null,
+    location: {coords: { latitude: 37.78825, longitude: -122.4324}},
+  };
 
-  // onRegionChange(region) {
-  //   this.setState({ region });
-  // }
+
 
   onPressButton() {
     Alert.alert('你已經按下按鈕囉');
     
   }
+  componentDidMount() {
+    this._getLocationAsync();
+  }
+  componentWillMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
 
+  _handleMapRegionChange = mapRegion => {
+    this.setState({ mapRegion });
+  };
+
+  _getLocationAsync = async () => {
+   let { status } = await Permissions.askAsync(Permissions.LOCATION);
+   if (status !== 'granted') {
+     this.setState({
+       locationResult: 'Permission to access location was denied',
+       location,
+     });
+   }
+
+   let location = await Location.getCurrentPositionAsync({});
+   this.setState({ locationResult: JSON.stringify(location), location, });
+ };
 
   render() {
+
+    let text = 'Waiting..';
+    if (this.state.errorMessage) {
+      text = this.state.errorMessage;
+    } else if (this.state.location) {
+      text = JSON.stringify(this.state.location);
+    }
+
     return (
 
       <View style={{ flex: 1, paddingTop: 25, backgroundColor: '#DCDDDD' }}>
@@ -110,15 +142,19 @@ export default class App extends React.Component {
        /> */}
 
       <MapView
-      style={{ flex: 1 }}
-      initialRegion={{
-								latitude: 24.175373,
-								longitude: 120.690486,
-								latitudeDelta: 0.005,
-								longitudeDelta: 0.005,
-							}}
-						/>
+      style={{ flex: 1 ,alignSelf: 'stretch', height: 200 }}
+          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
+          onRegionChange={this._handleMapRegionChange}
+						>
+      <MapView.Marker
+      coordinate={this.state.location.coords}
+      title="My Marker"
+      description="Some description"
+    />
 
+
+
+      </MapView>
       {/* // 塞入itemlist做附近店面列表   */}
       <ScrollView style={{flex: 1}}>
       {
@@ -158,6 +194,8 @@ export default class App extends React.Component {
 
 
 						/>
+            <Text>{text}</Text>
+            <Text>{this.state.latitude}</Text>
     </View>
       <View style={page.member}>
       <Button
