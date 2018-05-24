@@ -65,7 +65,7 @@ export default class App extends React.Component {
   state = {
     location: null,
     errorMessage: null,
-    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0922, longitudeDelta: 0.0421 },
+    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0005, longitudeDelta: 0.0005 },
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
   };
@@ -142,18 +142,15 @@ export default class App extends React.Component {
        /> */}
 
       <MapView
-      style={{ flex: 1 ,alignSelf: 'stretch', height: 200 }}
-          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }}
-          onRegionChange={this._handleMapRegionChange}
+      style={{alignSelf: 'stretch', height: 200 }}
+          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.005, longitudeDelta: 0.005 }}
+          //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
 						>
       <MapView.Marker
       coordinate={this.state.location.coords}
-      title="My Marker"
-      description="Some description"
+      title="我的位置"
+      //description="Some description"
     />
-
-
-
       </MapView>
       {/* // 塞入itemlist做附近店面列表   */}
       <ScrollView style={{flex: 1}}>
@@ -194,8 +191,7 @@ export default class App extends React.Component {
 
 
 						/>
-            <Text>{text}</Text>
-            <Text>{this.state.latitude}</Text>
+            
     </View>
       <View style={page.member}>
       <Button
