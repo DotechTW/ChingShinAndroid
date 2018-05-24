@@ -11,7 +11,7 @@ import {
   LayoutAnimation,
   StatusBar,
   Alert,
-
+  ScrollView,
 } from 'react-native';
 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
@@ -114,7 +114,7 @@ export default class App extends React.Component {
 						/>
 
       {/* // 塞入itemlist做附近店面列表   */}
-      <View style={{flex: 1}}>
+      <ScrollView style={{flex: 1}}>
       {
 				list.map((l, i) => (
         <ListItem
@@ -125,7 +125,7 @@ export default class App extends React.Component {
         />
         ))
 			}
-    </View>
+    </ScrollView>
 
       {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
 
