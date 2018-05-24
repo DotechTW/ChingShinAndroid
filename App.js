@@ -73,6 +73,7 @@ export default class App extends React.Component {
 
   onPressButton() {
     Alert.alert('你已經按下按鈕囉');
+    
   }
 
 
