@@ -50,6 +50,22 @@ const list = [
     avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
     subtitle: '台中市北屯區后庄路22號',
   },
+  {
+    name: '456 后庄店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區后庄路22號',
+  },
+  {
+    name: '456 后庄店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區后庄路22號',
+  },
+  {
+    name: '456 后庄店',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: '台中市北屯區后庄路22號',
+  },
+    
 
 ];
 
@@ -89,7 +105,7 @@ class ScannerScreen extends React.Component {
             <Text>Camera permission is not granted</Text> :
             <BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
-              style={{ height: 200, width: 200 }}
+              style={{ height: height, width: width }}//
             />
         }
       </View>
@@ -150,7 +166,7 @@ class HomeScreen extends React.Component {
     return (
 
       <View style={{ flex: 1, paddingTop: 0, backgroundColor: '#DCDDDD' }}>
-        <Image source={require('./assets/title_background.png')} style={styles.headerImg} />
+        {/*<Image source={require('./assets/title_background.png')} style={styles.headerImg} />*/}
         {/* paddingTop是APP畫面最頂距離 */}
         {/* <NavigationBar title={titleConfig}/> */}
         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
@@ -163,7 +179,7 @@ class HomeScreen extends React.Component {
 						/>
     </View>
       <View style={page.best}>
-      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
+      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-150 ,resizeMode: Image.resizeMode.stretch }} />
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
 
     </View>
@@ -181,7 +197,7 @@ class HomeScreen extends React.Component {
             longitudeDelta: 0.05 
           }}
           //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
-						>
+			>
       <MapView.Marker
       coordinate={this.state.location.coords}
       title="我的位置"
