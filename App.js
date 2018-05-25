@@ -14,7 +14,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
-
+import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import NavigationBar from 'react-native-navbar';
 import { Button, Header, Icon, ListItem } from 'react-native-elements';
@@ -52,24 +52,17 @@ const list = [
   },
 
 ];
-//定義裝置長寬
-
-
-
-
 
 
 
 
 export default class App extends React.Component {
   state = {
-    location: null,
     errorMessage: null,
-    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0005, longitudeDelta: 0.0005 },
+    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0992, longitudeDelta: 0.0421 },
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
   };
-
 
 
   onPressButton() {
@@ -122,11 +115,11 @@ export default class App extends React.Component {
         {/* paddingTop是APP畫面最頂距離 */}
         {/* <NavigationBar title={titleConfig}/> */}
         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
-      <View style={page.index}>
+      <View >
         
       {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
       <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+height }}
-							// style={{height: '100%',width:'100%'}}
+							 style={{flex:1}}
 							// scalesPageToFit={true}
 						/>
     </View>
@@ -142,8 +135,8 @@ export default class App extends React.Component {
        /> */}
 
       <MapView
-      style={{alignSelf: 'stretch', height: 200 }}
-          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.005, longitudeDelta: 0.005 }}
+      style={{alignSelf: 'stretch', flex:1 }}
+          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.0992, longitudeDelta: 0.0421 }}
           //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
 						>
       <MapView.Marker
@@ -186,7 +179,7 @@ export default class App extends React.Component {
       title="掃描集點"
       fontSize={20}
       color="#6E6661"
-							// 按鈕
+			// 按鈕
       onPress={this.onPressButton}
 
 
