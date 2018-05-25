@@ -55,7 +55,7 @@ const list = [
 
 
 
-class DetailsScreen extends React.Component {
+class ScannerScreen extends React.Component {
   // static navigationOptions = {
   //   title: '掃描',
   // };
@@ -149,7 +149,7 @@ class HomeScreen extends React.Component {
 
     return (
 
-      <View style={{ flex: 1, paddingTop: 25, backgroundColor: '#DCDDDD' }}>
+      <View style={{ flex: 1, paddingTop: 0, backgroundColor: '#DCDDDD' }}>
         <Image source={require('./assets/title_background.png')} style={styles.headerImg} />
         {/* paddingTop是APP畫面最頂距離 */}
         {/* <NavigationBar title={titleConfig}/> */}
@@ -174,8 +174,12 @@ class HomeScreen extends React.Component {
        /> */}
 
       <MapView
-      style={{alignSelf: 'stretch', flex:1 }}
-          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.05, longitudeDelta: 0.05 }}
+      style={{ flex:1 }}
+          region={{ latitude: this.state.location.coords.latitude, 
+            longitude: this.state.location.coords.longitude, 
+            latitudeDelta: 0.05, 
+            longitudeDelta: 0.05 
+          }}
           //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
 						>
       <MapView.Marker
@@ -219,12 +223,9 @@ class HomeScreen extends React.Component {
       fontSize={20}
       color="#6E6661"
 			// 按鈕
-      onPress={this.onPressButton}
+      onPress={() => this.props.navigation.navigate('Scanner')}
             />
-        <Button
-          title="掃描"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
+        
             
     </View>
       <View style={page.member}>
@@ -303,7 +304,7 @@ class HomeScreen extends React.Component {
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
-    Details: DetailsScreen,
+    Scanner: ScannerScreen,
   },
   {
     initialRouteName: 'Home',
