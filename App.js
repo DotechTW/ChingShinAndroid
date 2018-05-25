@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
-import NavigationBar from 'react-native-navbar';
+//import NavigationBar from 'react-native-navbar';
 import { Button, Header, Icon, ListItem } from 'react-native-elements';
 import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
 // import MapView from 'expo';
@@ -55,11 +55,51 @@ const list = [
 
 
 
+class DetailsScreen extends React.Component {
+  // static navigationOptions = {
+  //   title: '掃描',
+  // };
+  state = {
+    hasCameraPermission: null,
+  };
+  componentDidMount() {
+    this._requestCameraPermission();
+  }
 
-export default class App extends React.Component {
+  _requestCameraPermission = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    this.setState({
+      hasCameraPermission: status === 'granted',
+    });
+  };
+
+  _handleBarCodeRead = data => {
+    Alert.alert(
+      'Scan successful!',
+      JSON.stringify(data)
+    );
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        {this.state.hasCameraPermission === null ?
+          <Text>Requesting for camera permission</Text> :
+          this.state.hasCameraPermission === false ?
+            <Text>Camera permission is not granted</Text> :
+            <BarCodeScanner
+              onBarCodeRead={this._handleBarCodeRead}
+              style={{ height: 200, width: 200 }}
+            />
+        }
+      </View>
+    );
+  }
+}
+class HomeScreen extends React.Component {
   state = {
     errorMessage: null,
-    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.0992, longitudeDelta: 0.0421 },
+    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.05, longitudeDelta: 0.05 },
     locationResult: null,
     location: {coords: { latitude: 37.78825, longitude: -122.4324}},
   };
@@ -67,7 +107,6 @@ export default class App extends React.Component {
 
   onPressButton() {
     Alert.alert('你已經按下按鈕囉');
-    
   }
   componentDidMount() {
     this._getLocationAsync();
@@ -136,7 +175,7 @@ export default class App extends React.Component {
 
       <MapView
       style={{alignSelf: 'stretch', flex:1 }}
-          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.0992, longitudeDelta: 0.0421 }}
+          region={{ latitude: this.state.location.coords.latitude, longitude: this.state.location.coords.longitude, latitudeDelta: 0.05, longitudeDelta: 0.05 }}
           //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
 						>
       <MapView.Marker
@@ -181,9 +220,11 @@ export default class App extends React.Component {
       color="#6E6661"
 			// 按鈕
       onPress={this.onPressButton}
-
-
-						/>
+            />
+        <Button
+          title="掃描"
+          onPress={() => this.props.navigation.navigate('Details')}
+        />
             
     </View>
       <View style={page.member}>
@@ -259,7 +300,21 @@ export default class App extends React.Component {
     return <PagerTabIndicator tabs={tabs} />;
   }
 }
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Details: DetailsScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
 
+export default class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -347,3 +402,4 @@ const titleConfig = {
   // icon: require('./assets/title_background.png'),
 };
 // 1534*338  306*67
+
