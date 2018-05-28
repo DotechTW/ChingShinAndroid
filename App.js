@@ -69,6 +69,20 @@ const list = [
 
 ];
 
+class LogoTitle extends React.Component {
+  render() {
+    return (
+      <Image
+        source={require('./assets/title_background.png')}
+        style={{ width: 50, height: 10 , flex: 1,
+          //backgroundColor: '#fff',
+          alignItems: 'center',
+          justifyContent: 'center',
+          resizeMode: Image.resizeMode.center}}
+      />
+    );
+  }
+}
 
 class ScannerScreen extends React.Component {
   constructor(props){
@@ -137,6 +151,10 @@ class ScannerScreen extends React.Component {
   }
 }
 class HomeScreen extends React.Component {
+  static navigationOptions = {
+    // headerTitle instead of title
+    headerTitle: <LogoTitle />,
+  };
   state = {
     mapRegion: { 
       latitude: 24.175400, 
@@ -360,6 +378,15 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
+    // navigationOptions: {
+    //   headerStyle: {
+    //     backgroundColor: '#f4511e',
+    //   },
+    //   headerTintColor: '#fff',
+    //   headerTitleStyle: {
+    //     fontWeight: 'bold',
+    //   },
+    // },
   }
 );
 
