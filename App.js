@@ -74,7 +74,7 @@ class LogoTitle extends React.Component {
     return (
       <Image
         source={require('./assets/title_background.png')}
-        style={{ width: 50, height: 10 , flex: 1,
+        style={{ width: 50, height: 30 , flex: 1,
           //backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
@@ -378,15 +378,12 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    // navigationOptions: {
-    //   headerStyle: {
-    //     backgroundColor: '#f4511e',
-    //   },
-    //   headerTintColor: '#fff',
-    //   headerTitleStyle: {
-    //     fontWeight: 'bold',
-    //   },
-    // },
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#DCDDDD',
+      },
+     
+    },
   }
 );
 
