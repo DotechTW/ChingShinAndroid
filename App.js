@@ -70,14 +70,16 @@ const list = [
 ];
 
 
-
 class ScannerScreen extends React.Component {
-  // static navigationOptions = {
-  //   title: '掃描',
-  // };
-  state = {
-    hasCameraPermission: null,
-  };
+  constructor(props){
+    super(props);
+    this.state={
+      scannedBarcodeData: 'none',
+      numBarcodesScanned: 0,
+      hasCameraPermission: null,
+    };
+
+  }
   componentDidMount() {
     this._requestCameraPermission();
   }
@@ -90,6 +92,15 @@ class ScannerScreen extends React.Component {
   };
 
   _handleBarCodeRead = data => {
+    const newBarcodeDataCandidate = JSON.stringify(data);
+    const barcodeJustSeen =
+      newBarcodeDataCandidate === this.state.scannedBarcodeData;
+    if (!barcodeJustSeen) {
+      this.setState({
+        scannedBarcodeData: newBarcodeDataCandidate,
+        numBarcodesScanned: this.state.numBarcodesScanned + 1,
+      });
+    }
     Alert.alert(
       'Scan successful!',
       JSON.stringify(data)
@@ -105,7 +116,7 @@ class ScannerScreen extends React.Component {
             <Text>Camera permission is not granted</Text> :
             <BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
-              style={{ height: height, width: width }}//
+              style={{ height: 300, width: 300 }}//
             />
         }
       </View>
@@ -114,28 +125,29 @@ class ScannerScreen extends React.Component {
 }
 class HomeScreen extends React.Component {
   state = {
-    errorMessage: null,
-    mapRegion: { latitude: 37.78825, longitude: -122.4324, latitudeDelta: 0.05, longitudeDelta: 0.05 },
+    mapRegion: { 
+      latitude: 24.175400, 
+      longitude: 120.690504, 
+      latitudeDelta: 0.05, 
+      longitudeDelta: 0.05, 
+    },
     locationResult: null,
-    location: {coords: { latitude: 37.78825, longitude: -122.4324}},
+    location: {coords: { latitude: 24.175400, longitude: 120.690504}},
   };
 
-
-  onPressButton() {
-    Alert.alert('你已經按下按鈕囉');
-  }
   componentDidMount() {
     this._getLocationAsync();
   }
-  componentWillMount() {
-    if (Platform.OS === 'android' && !Constants.isDevice) {
-      this.setState({
-        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-      });
-    } else {
-      this._getLocationAsync();
-    }
-  }
+
+  // componentWillMount() {
+  //   if (Platform.OS === 'android' && !Constants.isDevice) {
+  //     this.setState({
+  //       errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+  //     });
+  //   } else {
+  //     this._getLocationAsync();
+  //   }
+  // }
 
   _handleMapRegionChange = mapRegion => {
     this.setState({ mapRegion });
@@ -145,7 +157,7 @@ class HomeScreen extends React.Component {
    let { status } = await Permissions.askAsync(Permissions.LOCATION);
    if (status !== 'granted') {
      this.setState({
-       locationResult: 'Permission to access location was denied',
+       locationResult: '讀取位置的權限被拒絕',
        location,
      });
    }
@@ -153,6 +165,11 @@ class HomeScreen extends React.Component {
    let location = await Location.getCurrentPositionAsync({});
    this.setState({ locationResult: JSON.stringify(location), location, });
  };
+
+ //按下按鈕後彈出視窗
+  onPressButton() {
+    Alert.alert('你已經按下按鈕囉');
+  }
 
   render() {
 
@@ -183,40 +200,36 @@ class HomeScreen extends React.Component {
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
 
     </View>
-      <View style={page.check}>
-      {/* <MapView
-         region={this.state.region}SS
-         onRegionChange={this.onRegionChange}
-       /> */}
-
+    <View style={page.check}>
       <MapView
-      style={{ flex:1 }}
-          region={{ latitude: this.state.location.coords.latitude, 
-            longitude: this.state.location.coords.longitude, 
-            latitudeDelta: 0.05, 
-            longitudeDelta: 0.05 
-          }}
+        style={{ flex:1 }}
+            region={{ 
+              latitude: this.state.location.coords.latitude, 
+              longitude: this.state.location.coords.longitude, 
+              latitudeDelta: 0.05, 
+              longitudeDelta: 0.05 
+            }}
           //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
 			>
-      <MapView.Marker
-      coordinate={this.state.location.coords}
-      title="我的位置"
-      //description="Some description"
-    />
+        <MapView.Marker
+          coordinate={this.state.location.coords}
+          title="我的位置"
+          //description="Some description"
+        />
       </MapView>
       {/* // 塞入itemlist做附近店面列表   */}
       <ScrollView style={{flex: 1}}>
-      {
-				list.map((l, i) => (
-        <ListItem
-          key={i}
-          leftAvatar={{ source: { uri: l.avatar_url } }}
-          title={l.name}
-          subtitle={l.subtitle}
-        />
-        ))
-			}
-    </ScrollView>
+        {
+          list.map((l, i) => (
+          <ListItem
+            key={i}
+            leftAvatar={{ source: { uri: l.avatar_url } }}
+            title={l.name}
+            subtitle={l.subtitle}
+          />
+          ))
+        }
+      </ScrollView>
 
       {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
 
@@ -235,13 +248,23 @@ class HomeScreen extends React.Component {
 								borderWidth: 1,
 								borderRadius: 5,
 							}}
-      title="掃描集點"
-      fontSize={20}
-      color="#6E6661"
-			// 按鈕
-      onPress={() => this.props.navigation.navigate('Scanner')}
-            />
+        title="掃描集點"
+        fontSize={20}
+        color="#6E6661"
+			  // 按鈕
+        onPress={() => this.props.navigation.navigate('Scanner')}
+      />
+      
         
+        <Text>
+          Most recent barcode: {this.state.scannedBarcodeData}
+        </Text>
+
+        
+        <Text>
+          Number of scans: {this.state.numBarcodesScanned}
+        </Text>
+
             
     </View>
       <View style={page.member}>
