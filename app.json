@@ -24,7 +24,12 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.dotech.chinshinrn"
+      "package": "com.dotech.chinshinrn",
+      "config":  {
+        "googleMaps":{
+          "apiKey": "AIzaSyAQSdDE_iF0ZHPlgf0C1m_6cxQBth-OsDk"
+        }
+      } 
     }
   }
 }

@@ -233,7 +233,7 @@ class HomeScreen extends React.Component {
 						/>
     </View>
       <View style={page.best}>
-      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-150 ,resizeMode: Image.resizeMode.stretch }} />
+      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
 
     </View>
