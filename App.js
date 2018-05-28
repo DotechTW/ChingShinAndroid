@@ -85,6 +85,11 @@ class LogoTitle extends React.Component {
 }
 
 class ScannerScreen extends React.Component {
+  static navigationOptions = {
+    // headerTitle instead of title
+    headerTitle: <LogoTitle />,
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+  };
   constructor(props){
     super(props);
     this.state={
@@ -154,6 +159,7 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle />,
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
   };
   state = {
     mapRegion: { 
@@ -378,12 +384,12 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'Home',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#DCDDDD',
-      },
+    // navigationOptions: {
+    //   headerStyle: {
+    //     backgroundColor: '#DCDDDD',
+    //   },
      
-    },
+    // },
   }
 );
 
