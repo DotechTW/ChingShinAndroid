@@ -92,6 +92,9 @@ class ScannerScreen extends React.Component {
   };
 
   _handleBarCodeRead = data => {
+    const { goBack, state } = this.props.navigation;
+    goBack();
+    
     const newBarcodeDataCandidate = JSON.stringify(data);
     const barcodeJustSeen =
       newBarcodeDataCandidate === this.state.scannedBarcodeData;
@@ -101,10 +104,20 @@ class ScannerScreen extends React.Component {
         numBarcodesScanned: this.state.numBarcodesScanned + 1,
       });
     }
+    // Alert.alert(
+    //   'Scan successful!',
+    //   JSON.stringify(data)
+    // );
     Alert.alert(
       'Scan successful!',
-      JSON.stringify(data)
-    );
+      JSON.stringify(data),
+      [
+        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    )
+    // onPress={() => this.props.navigation.navigate('Scanner')}
   };
 
   render() {
