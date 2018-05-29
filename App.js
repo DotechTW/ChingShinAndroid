@@ -84,6 +84,43 @@ class LogoTitle extends React.Component {
     );
   }
 }
+class LoginScreen extends React.Component {
+  // 登入畫面
+  render() {
+    return (
+      <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white' ,}}>
+        <Text style={{flex: 1, fontSize: 30, alignItems: 'center', justifyContent: 'center', }}>
+          會員登入
+        </Text>
+        <Text style={{flex: 1, fontSize: 15, alignItems: 'center', }}>
+          手機號碼Phone
+        </Text>
+        
+
+
+
+
+      </View>
+
+
+    );
+  }
+}
+class RegisterScreen extends React.Component {
+  // 註冊畫面
+  render() {
+    return (
+      <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white',}} >
+        <Text style={{flex: 1, fontSize: 30, }}>
+          註冊登入
+        </Text>
+      </View>
+
+
+    );
+  }
+}
+
 
 class ScannerScreen extends React.Component {
   static navigationOptions = {
@@ -162,7 +199,7 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30} //頂端列高度
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
   };
   state = {
     mapRegion: { 
@@ -321,7 +358,8 @@ class HomeScreen extends React.Component {
       title="登入"
       fontSize={30}
       color="#6E6661"
-						/>
+      onPress={() => this.props.navigation.navigate('Login')}
+      />
       <Text />
       <Button
       buttonStyle={{
@@ -335,7 +373,8 @@ class HomeScreen extends React.Component {
       title="註冊"
       fontSize={30}
       color="#6E6661"
-						/>
+      onPress={() => this.props.navigation.navigate('Register')}
+			/>
       <Text />
       <Button
       color="#444444"
@@ -385,6 +424,8 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     Scanner: ScannerScreen,
+    Login: LoginScreen,
+    Register: RegisterScreen,
   },
   {
     initialRouteName: 'Home',

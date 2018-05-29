@@ -47,3 +47,12 @@
         ); 
         }
 ```
+- 增加頁面並轉跳
+    * 建立頁面的`class`
+    ```JSX
+    class <Name> extends React.Componet{
+        //內容
+    }
+    ```
+    * 加入進入頁面方式
+        `ex.按下按鈕`
