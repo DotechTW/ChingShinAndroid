@@ -55,4 +55,21 @@
     }
     ```
     * 加入進入頁面方式
-        `ex.按下按鈕`
+        `ex.按下按鈕>轉跳>進入頁面`
+        ```JSX
+        onPress={() => this.props.navigation.navigate('Scanner')}
+        ```
+    * 加入目錄頁面位置關聯
+        ```JSX
+        const RootStack = createStackNavigator(
+            {
+                Home: HomeScreen,
+                Scanner: ScannerScreen,
+                Login: LoginScreen,
+                Register: RegisterScreen,
+            },
+            {
+                initialRouteName: 'Home',
+            }
+        );
+        ```
