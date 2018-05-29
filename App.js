@@ -13,6 +13,7 @@ import {
   Alert,
   ScrollView,
   Platform,
+  TextInput,
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
@@ -86,18 +87,46 @@ class LogoTitle extends React.Component {
 }
 class LoginScreen extends React.Component {
   // 登入畫面
+  constructor(props) {
+    super(props);
+    this.state = { text: '0912456789' };
+  }
   render() {
     return (
-      <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white' ,}}>
-        <Text style={{flex: 1, fontSize: 30, alignItems: 'center', justifyContent: 'center', }}>
-          會員登入
-        </Text>
-        <Text style={{flex: 1, fontSize: 15, alignItems: 'center', }}>
-          手機號碼Phone
-        </Text>
-        
-
-
+      <View style={{flex: 1 ,alignItems: 'center', backgroundColor:'white' ,}}>
+        <View style={{flex: 1,alignItems: 'center', justifyContent: 'center', }}>
+          <Text style={{flex: 1, fontSize: 30, alignItems: 'center', justifyContent: 'center', }}>
+            會員登入
+          </Text>
+        </View>
+        <View style={{flex: 2,}}>
+          <Text style={{fontSize: 15,  }}>
+            手機號碼Phone
+          </Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 0}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+          <Text style={{fontSize: 15, }}>
+            密碼Password
+          </Text>
+        </View>
+        <Button
+          buttonStyle={{
+                  backgroundColor: 'white',
+                  width: 150,
+                  height: 50,
+                  borderColor: '#6E6661',
+                  borderWidth: 1,
+                  borderRadius: 5,
+                }}
+          title="掃描集點"
+          fontSize={20}
+          color="#6E6661"
+          // 按鈕
+          onPress={() => this.props.navigation.navigate('Scanner')}
+        />
 
 
       </View>
