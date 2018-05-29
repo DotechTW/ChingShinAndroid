@@ -38,3 +38,12 @@
  - `justifyContent: 'center'`是垂直置中
  - QRCode震動路徑`node_modules\react-native\ReactAndroid\src\main`
  - 輸出指令apk`exp ba`
+ - 按下按鈕後彈出Alert
+ ```jsx
+ onPressButton() {
+        Alert.alert(
+        'Scan successful!',
+        JSON.stringify(data)
+        ); 
+        }
+```

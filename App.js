@@ -69,13 +69,14 @@ const list = [
 
 ];
 
+
 class LogoTitle extends React.Component {
+  // 畫面最上面那條頂端列，只放入圖片，其餘在使用這個class時修改navigationOptions
   render() {
     return (
       <Image
         source={require('./assets/title_background.png')}
         style={{ width: 50, height: 30 , flex: 1,
-          //backgroundColor: '#fff',
           alignItems: 'center',
           justifyContent: 'center',
           resizeMode: Image.resizeMode.center}}
@@ -87,7 +88,7 @@ class LogoTitle extends React.Component {
 class ScannerScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
-    headerTitle: <LogoTitle />,
+    headerTitle: <LogoTitle/>,
     headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
   };
   constructor(props){
@@ -113,6 +114,8 @@ class ScannerScreen extends React.Component {
   _handleBarCodeRead = data => {
     const { goBack, state } = this.props.navigation;
     goBack();
+    //掃描後返回上一頁面
+
     
     const newBarcodeDataCandidate = JSON.stringify(data);
     const barcodeJustSeen =
@@ -131,8 +134,8 @@ class ScannerScreen extends React.Component {
       'Scan successful!',
       JSON.stringify(data),
       [
-        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+        {text: '確定', onPress: () => console.log('OK Pressed')},
       ],
       { cancelable: false }
     )
@@ -158,8 +161,8 @@ class ScannerScreen extends React.Component {
 class HomeScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
-    headerTitle: <LogoTitle />,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+    headerTitle: <LogoTitle/>,
+    headerStyle: {height: 30} //頂端列高度
   };
   state = {
     mapRegion: { 
@@ -176,15 +179,15 @@ class HomeScreen extends React.Component {
     this._getLocationAsync();
   }
 
-  // componentWillMount() {
-  //   if (Platform.OS === 'android' && !Constants.isDevice) {
-  //     this.setState({
-  //       errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-  //     });
-  //   } else {
-  //     this._getLocationAsync();
-  //   }
-  // }
+  componentWillMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
 
   _handleMapRegionChange = mapRegion => {
     this.setState({ mapRegion });
@@ -304,6 +307,7 @@ class HomeScreen extends React.Component {
 
             
     </View>
+    {/* <Text>會員頁面</Text> */}
       <View style={page.member}>
       <Button
       buttonStyle={{
@@ -343,7 +347,7 @@ class HomeScreen extends React.Component {
 							// icon={{name: 'code'}}
       title="忘記密碼"
   />
-      {/* <Text>會員頁面</Text> */}
+      
     </View>
     </IndicatorViewPager>
       </View>
@@ -388,8 +392,8 @@ const RootStack = createStackNavigator(
     //   headerStyle: {
     //     backgroundColor: '#DCDDDD',
     //   },
-     
     // },
+    // navigationOptions的style已寫到logo title在其中修改就好
   }
 );
 
