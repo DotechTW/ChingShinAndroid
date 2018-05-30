@@ -100,34 +100,40 @@ class LoginScreen extends React.Component {
           </Text>
         </View>
         <View style={{flex: 2,}}>
-          <Text style={{fontSize: 15,  }}>
+          <Text style={{fontSize: 20, height: 30, width: 150,}}>
             手機號碼Phone
           </Text>
           <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1, borderRadius: 0}}
+            style={{fontSize: 20 ,height: 30,width: 250, borderColor: 'gray', borderWidth: 1, borderRadius: 1}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
           />
-          <Text style={{fontSize: 15, }}>
+          <Text style={{fontSize: 20, }}>
             密碼Password
           </Text>
+          <TextInput
+            style={{fontSize: 20 ,height: 30, width: 250, borderColor: 'gray', borderWidth: 1, borderRadius: 2}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text}
+          />
+          <Text/>
+          <Button
+            buttonStyle={{
+                    backgroundColor: 'white',
+                    width: 150,
+                    height: 50,
+                    borderColor: '#6E6661',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                  }}
+            title="登入"
+            fontSize={20}
+            color="#6E6661"
+            // 按鈕
+            onPress={() => this.props.navigation.navigate('Home')}
+          />
+        
         </View>
-        <Button
-          buttonStyle={{
-                  backgroundColor: 'white',
-                  width: 150,
-                  height: 50,
-                  borderColor: '#6E6661',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                }}
-          title="掃描集點"
-          fontSize={20}
-          color="#6E6661"
-          // 按鈕
-          onPress={() => this.props.navigation.navigate('Scanner')}
-        />
-
 
       </View>
 
