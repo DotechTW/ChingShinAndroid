@@ -93,54 +93,91 @@ class LoginScreen extends React.Component {
   }
   render() {
     return (
-      <View style={{flex: 1 ,alignItems: 'center', backgroundColor:'white' ,}}>
-        <View style={{flex: 1,alignItems: 'center', justifyContent: 'center', }}>
-          <Text style={{flex: 1, fontSize: 30, alignItems: 'center', justifyContent: 'center', }}>
-            會員登入
-          </Text>
-        </View>
-        <View style={{flex: 2,}}>
-          <Text style={{fontSize: 20, height: 30, width: 150,}}>
-            手機號碼Phone
-          </Text>
-          <TextInput
-            style={{fontSize: 20 ,height: 30,width: 250, borderColor: 'gray', borderWidth: 1, borderRadius: 1}}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-          />
-          <Text style={{fontSize: 20, }}>
-            密碼Password
-          </Text>
-          <TextInput
-            style={{fontSize: 20 ,height: 30, width: 250, borderColor: 'gray', borderWidth: 1, borderRadius: 2}}
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-          />
-          <Text/>
-          <Button
-            buttonStyle={{
-                    backgroundColor: 'white',
-                    width: 150,
-                    height: 50,
-                    borderColor: '#6E6661',
-                    borderWidth: 1,
-                    borderRadius: 5,
-                  }}
-            title="登入"
-            fontSize={20}
-            color="#6E6661"
-            // 按鈕
-            onPress={() => this.props.navigation.navigate('Home')}
-          />
-        
-        </View>
+      <ScrollView
+      contentContainerStyle={{flex:1}}
+      keyboardDismissMode='on-drag'
+      //keyboardShouldPersistTaps={false}
+      >
+      <View style={login.container}>
+        <Image
+          source={require('./assets/icon.png')}
+          style={login.logo}/>
+        <Text style={login.text1}>手機號碼Phone</Text>
+        <TextInput
+          ref={(username) => this.username = username}
+          onFocus={() => this.username.focus()}
+          style={login.input}
+          placeholder='0912345678'/>
+        <Text style={login.text1}>密碼Password</Text>
+        <TextInput
+          ref={(password) => this.password = password}
+          onFocus={() => this.password.focus()}
+          style={login.input}
+          placeholder='abc@gmail.com'
+          password={true}/>
 
+        <TouchableOpacity
+          style={login.btn}
+          onPress={() => console.log('press me')}
+          >
+          <Text style={login.text}>登入</Text>
+        </TouchableOpacity>
       </View>
-
-
-    );
-  }
+    </ScrollView>
+  );
 }
+}
+
+      const login = StyleSheet.create({
+      container: {
+        flex: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        alignItems: 'center',
+        backgroundColor: 'white'
+      },
+      logo: {
+        width: 80,
+        height: 80,
+        marginTop: 100
+      },
+      input: {
+        marginTop: 10,
+        height: 40,
+        alignSelf: 'stretch',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: 'lightblue'
+      },
+      text1: {
+        alignSelf: 'stretch',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        //fontWeight: 'bold',
+        fontSize: 15,
+        height: 20,
+      },
+      text: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#FFF'
+      },
+      btn: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#3333FF',
+        height: 40,
+        borderRadius: 5,
+        marginTop: 10
+      }
+      });
+
+
+
+  
+
+
 class RegisterScreen extends React.Component {
   // 註冊畫面
   render() {
