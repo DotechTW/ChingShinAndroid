@@ -26,7 +26,7 @@
  * [Button](https://react-native-training.github.io/react-native-elements/docs/button.html)
  * [按下按鈕alert顯示](http://a091234765.pixnet.net/blog/post/400293398-%5B%E7%AD%86%E8%A8%98%5Dreact-native%E4%B9%8B%E8%A7%B8%E6%8E%A7%E8%99%95%E7%90%86%E4%B9%8B%E4%B8%80%3Cbutton%3E)
  
-
+* [下載apk](https://expo.io/@liscott327/chinshinrn/builds)
 
 
 
