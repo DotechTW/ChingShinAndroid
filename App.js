@@ -89,7 +89,13 @@ class LoginScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'}, //頂端列高度
+
+    // return:({
+    //   right:(
+    //     <Button onPress={() => navigate('Register')} title="ok" />
+    //   ),
+    // })
   };
   constructor(props) {
     super(props);
@@ -112,6 +118,7 @@ class LoginScreen extends React.Component {
           onFocus={() => this.username.focus()}
           style={login.input}
           placeholder='0912345678'/>
+        <Text> </Text>
         <Text style={login.text1}>密碼Password</Text>
         <TextInput
           ref={(password) => this.password = password}
@@ -119,7 +126,6 @@ class LoginScreen extends React.Component {
           style={login.input}
           placeholder='abc@gmail.com'
           password={true}/>
-
         <TouchableOpacity
           style={login.btn}
           onPress={() => console.log('press me')}
@@ -136,8 +142,8 @@ class LoginScreen extends React.Component {
         //登入頁面樣式
       container: {
         flex: 1,
-        paddingLeft: 10,
-        paddingRight: 10,
+        paddingLeft: 30,
+        paddingRight: 30,
         alignItems: 'center',
         backgroundColor: 'white'
       },
@@ -152,29 +158,33 @@ class LoginScreen extends React.Component {
         alignSelf: 'stretch',
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: 'lightblue'
+        borderColor: '#6E6661'
       },
       text1: {
         alignSelf: 'stretch',
-        alignItems: 'flex-start',
+        alignItems: 'baseline',
         justifyContent: 'center',
         //fontWeight: 'bold',
         fontSize: 15,
-        height: 20,
+        //height: 20,
       },
       text: {
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#FFF'
+        color: '#6E6661'
       },
       btn: {
         alignSelf: 'stretch',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#3333FF',
-        height: 40,
+        backgroundColor: 'white',
+        height: 70,
         borderRadius: 5,
-        marginTop: 10
+        marginTop: 10,
+        borderColor: '#6E6661',
+				borderWidth: 1,
+				borderRadius: 5,
+								
       }
       });
 
