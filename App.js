@@ -184,7 +184,7 @@ class RegisterScreen extends React.Component {
     return (
       <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white',}} >
         <Text style={{flex: 1, fontSize: 30, }}>
-          註冊登入
+          註冊
         </Text>
       </View>
 
