@@ -112,14 +112,14 @@ class LoginScreen extends React.Component {
         <Image
           source={require('./assets/icon.png')}
           style={login.logo}/>
-        <Text style={login.text1}>手機號碼Phone</Text>
+        <Text style={login.text}>手機號碼Phone</Text>
         <TextInput
           ref={(username) => this.username = username}
           onFocus={() => this.username.focus()}
           style={login.input}
           placeholder='0912345678'/>
         <Text> </Text>
-        <Text style={login.text1}>密碼Password</Text>
+        <Text style={login.text}>密碼Password</Text>
         <TextInput
           ref={(password) => this.password = password}
           onFocus={() => this.password.focus()}
@@ -130,7 +130,7 @@ class LoginScreen extends React.Component {
           style={login.btn}
           onPress={() => console.log('press me')}
           >
-          <Text style={login.text}>登入</Text>
+          <Text style={login.btntext}>登入</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -160,7 +160,7 @@ class LoginScreen extends React.Component {
         borderWidth: 1,
         borderColor: '#6E6661'
       },
-      text1: {
+      text: {
         alignSelf: 'stretch',
         alignItems: 'baseline',
         justifyContent: 'center',
@@ -168,7 +168,7 @@ class LoginScreen extends React.Component {
         fontSize: 15,
         //height: 20,
       },
-      text: {
+      btntext: {
         fontWeight: 'bold',
         fontSize: 20,
         color: '#6E6661'
