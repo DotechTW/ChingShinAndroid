@@ -17,12 +17,11 @@ import {
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
-//import NavigationBar from 'react-native-navbar';
 import { Button, Header, Icon, ListItem } from 'react-native-elements';
 import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
-// import MapView from 'expo';
+
 // import { Button, Card } from 'react-native-material-design' ;
-// import {Dimensions} from 'react-native' ;
+//import NavigationBar from 'react-native-navbar';
 // 裝置長寬
 const { height, width } = Dimensions.get('window');
 const list = [
@@ -87,6 +86,11 @@ class LogoTitle extends React.Component {
 }
 class LoginScreen extends React.Component {
   // 登入畫面
+  static navigationOptions = {
+    // headerTitle instead of title
+    headerTitle: <LogoTitle/>,
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+  };
   constructor(props) {
     super(props);
     this.state = { text: '0912456789' };
@@ -129,6 +133,7 @@ class LoginScreen extends React.Component {
 }
 
       const login = StyleSheet.create({
+        //登入頁面樣式
       container: {
         flex: 1,
         paddingLeft: 10,
@@ -180,6 +185,11 @@ class LoginScreen extends React.Component {
 
 class RegisterScreen extends React.Component {
   // 註冊畫面
+  static navigationOptions = {
+    // headerTitle instead of title
+    headerTitle: <LogoTitle/>,
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+  };
   render() {
     return (
       <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white',}} >
