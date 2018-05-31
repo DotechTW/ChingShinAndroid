@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
-import { Button, Header, Icon, ListItem } from 'react-native-elements';
+import { Button, Header, Icon, ListItem, CheckBox  } from 'react-native-elements';
 import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
 
 // import { Button, Card } from 'react-native-material-design' ;
@@ -126,7 +126,7 @@ class LoginScreen extends React.Component {
       <View style={login.containerDown}>  
         <TouchableOpacity
           style={login.btn}
-          onPress={() => console.log('press me')}
+          onPress={() => this.props.navigation.navigate('Home')}
           >
           <Text style={login.btntext}>確認送出</Text>
         </TouchableOpacity>
@@ -211,18 +211,101 @@ class RegisterScreen extends React.Component {
     headerRight: <View></View>,
     // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
   };
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     checked:{false},
+  //   }};
   render() {
-    return (
-      <View style={{flex: 1 ,alignItems: 'center', justifyContent: 'center', backgroundColor:'white',}} >
-        <Text style={{flex: 1, fontSize: 30, }}>
-          註冊
-        </Text>
-      </View>
-
-
+      return (
+        <ScrollView 
+        contentContainerStyle={{flex:1}}
+        keyboardDismissMode='on-drag'
+        //keyboardShouldPersistTaps={false}
+        >
+        <View style={register.containerUp}>
+          <Text style={register.title}>會員註冊說明</Text>
+          <Text style={register.lighttext}>本公司遵循個人資料保護法</Text>
+          {/*<CheckBox
+            center
+            title='Click Here'
+            checked={this.state.checked}
+          />
+          */}  
+          
+        </View>
+        <View style={register.containerDown}>
+          <TouchableOpacity
+            style={register.btn}
+            onPress={() => this.props.navigation.navigate('Home')}
+          >
+          <Text style={register.btntext}>下一步</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
   }
 }
+    const register = StyleSheet.create({
+      //登入頁面樣式
+      containerUp: {
+        flex: 1,
+        paddingLeft: 20,  //框與螢幕左側距離
+        paddingRight: 20, //框與螢幕右側距離
+        alignItems: 'center',
+        backgroundColor: 'white'
+      },
+      containerDown: {
+        flex: 1,
+        flexDirection: 'column-reverse',
+        paddingLeft: 20,
+        paddingRight: 20,
+        alignItems: 'center',
+        backgroundColor: 'white'
+      },
+      title: {
+        fontSize: 30,
+        // width: 100,
+        // height: 80,
+        // alignSelf: 'stretch',
+        margin: 30,
+      },
+      lighttext: {
+        //marginTop: 10,
+        height: 44,
+        alignSelf: 'stretch',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#6E6661',
+      },
+      text: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center',
+        //fontWeight: 'bold',
+        fontSize: 16,
+        //height: 20,
+      },
+      btntext: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#6E6661'
+      },
+      btn: {
+        alignSelf: 'stretch',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        height: 44,
+        borderRadius: 5,
+        marginBottom: 20,
+        //marginBotton: 20,
+        borderColor: '#6E6661',
+        borderWidth: 1,
+        borderRadius: 5,
+                
+      }
+      });
 
 
 class ScannerScreen extends React.Component {
@@ -369,15 +452,15 @@ class HomeScreen extends React.Component {
       <View >
         
       {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+height}}
-							 style={{flex:1}}
+      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+(height-120)}}
+							 style={{flex:1 ,height: height-104 ,width: width}}
               // scalesPageToFit={true}
               />
     </View>
       <View style={page.best}>
       <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
-
+      {/*104是頂端列高度+分頁按鈕高度*/}
     </View>
     <View style={page.check}>
       <MapView
