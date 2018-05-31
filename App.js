@@ -103,29 +103,32 @@ class LoginScreen extends React.Component {
   }
   render() {
     return (
-      <ScrollView
+      <ScrollView 
       contentContainerStyle={{flex:1}}
       keyboardDismissMode='on-drag'
       //keyboardShouldPersistTaps={false}
       >
-      <View style={login.container}>
-        <Image
-          source={require('./assets/icon.png')}
-          style={login.logo}/>
+      <View style={login.containerUp}>
+        <Text style={login.title}>會員登入</Text>
+        <Text style={login.text}> </Text>
         <Text style={login.text}>手機號碼Phone</Text>
         <TextInput
+          underlineColorAndroid='transparent'
           ref={(username) => this.username = username}
           onFocus={() => this.username.focus()}
           style={login.input}
           placeholder='0912345678'/>
-        <Text> </Text>
+        
         <Text style={login.text}>密碼Password</Text>
-        <TextInput
+        <TextInput 
+          underlineColorAndroid='transparent'
           ref={(password) => this.password = password}
           onFocus={() => this.password.focus()}
           style={login.input}
           placeholder='abc@gmail.com'
           password={true}/>
+      </View>
+      <View style={login.containerDown}>  
         <TouchableOpacity
           style={login.btn}
           onPress={() => console.log('press me')}
@@ -138,31 +141,41 @@ class LoginScreen extends React.Component {
 }
 }
 
-      const login = StyleSheet.create({
-        //登入頁面樣式
-      container: {
+    const login = StyleSheet.create({
+      //登入頁面樣式
+      containerUp: {
         flex: 1,
-        paddingLeft: 30,
-        paddingRight: 30,
+        paddingLeft: 20,  //框與螢幕左側距離
+        paddingRight: 20, //框與螢幕右側距離
         alignItems: 'center',
         backgroundColor: 'white'
       },
-      logo: {
-        width: 80,
-        height: 80,
-        marginTop: 100
+      containerDown: {
+        flex: 1,
+        flexDirection: 'column-reverse',
+        paddingLeft: 20,
+        paddingRight: 20,
+        alignItems: 'center',
+        backgroundColor: 'white'
+      },
+      title: {
+        fontSize: 30,
+        // width: 100,
+        // height: 80,
+        // alignSelf: 'stretch',
+        margin: 30,
       },
       input: {
-        marginTop: 10,
-        height: 40,
+        //marginTop: 10,
+        height: 50,
         alignSelf: 'stretch',
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: '#6E6661'
+        borderColor: '#6E6661',
       },
       text: {
         alignSelf: 'stretch',
-        alignItems: 'baseline',
+        alignItems: 'center',
         justifyContent: 'center',
         //fontWeight: 'bold',
         fontSize: 15,
@@ -178,9 +191,10 @@ class LoginScreen extends React.Component {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        height: 70,
+        height: 40,
         borderRadius: 5,
-        marginTop: 10,
+        marginBottom: 20,
+        //marginBotton: 20,
         borderColor: '#6E6661',
 				borderWidth: 1,
 				borderRadius: 5,
@@ -354,15 +368,14 @@ class HomeScreen extends React.Component {
       <View style={{ flex: 1, paddingTop: 0, backgroundColor: '#DCDDDD' }}>
         {/*<Image source={require('./assets/title_background.png')} style={styles.headerImg} />*/}
         {/* paddingTop是APP畫面最頂距離 */}
-        {/* <NavigationBar title={titleConfig}/> */}
         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
       <View >
         
       {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+height }}
+      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+height}}
 							 style={{flex:1}}
-							// scalesPageToFit={true}
-						/>
+              // scalesPageToFit={true}
+              />
     </View>
       <View style={page.best}>
       <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
@@ -609,17 +622,4 @@ const page = StyleSheet.create({
 });
 
 
-
-
-
-const rightButtonConfig = {
-  title: 'Next',
-  handler: () => alert('hello!'),
-};// 需要在加到title後面
-
-const titleConfig = {
-  title: '清心福全',
-  // icon: require('./assets/title_background.png'),
-};
-// 1534*338  306*67
 
