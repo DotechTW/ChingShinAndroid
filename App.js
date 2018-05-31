@@ -76,7 +76,7 @@ class LogoTitle extends React.Component {
     return (
       <Image
         source={require('./assets/title_background.png')}
-        style={{ width: 50, height: 30 , flex: 1,
+        style={{ width: 100, height: 30 , flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
           resizeMode: Image.resizeMode.center}}
@@ -86,21 +86,19 @@ class LogoTitle extends React.Component {
 }
 class LoginScreen extends React.Component {
   // 登入畫面
+  
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'}, //頂端列高度
-
-    // return:({
-    //   right:(
-    //     <Button onPress={() => navigate('Register')} title="ok" />
-    //   ),
-    // })
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD',}, //頂端列高度
+    headerRight: <View></View>,
+    // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
   };
-  constructor(props) {
-    super(props);
-    this.state = { text: '0912456789' };
-  }
+  
+  //constructor(props) {
+  //   super(props);
+  //   this.state = { text: '0912456789' };
+  // }
   render() {
     return (
       <ScrollView 
@@ -110,7 +108,6 @@ class LoginScreen extends React.Component {
       >
       <View style={login.containerUp}>
         <Text style={login.title}>會員登入</Text>
-        <Text style={login.text}> </Text>
         <Text style={login.text}>手機號碼Phone</Text>
         <TextInput
           underlineColorAndroid='transparent'
@@ -118,7 +115,6 @@ class LoginScreen extends React.Component {
           onFocus={() => this.username.focus()}
           style={login.input}
           placeholder='0912345678'/>
-        
         <Text style={login.text}>密碼Password</Text>
         <TextInput 
           underlineColorAndroid='transparent'
@@ -167,7 +163,7 @@ class LoginScreen extends React.Component {
       },
       input: {
         //marginTop: 10,
-        height: 50,
+        height: 40,
         alignSelf: 'stretch',
         borderRadius: 5,
         borderWidth: 1,
@@ -212,7 +208,9 @@ class RegisterScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD',}, //頂端列高度
+    headerRight: <View></View>,
+    // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
   };
   render() {
     return (
