@@ -76,7 +76,7 @@ class LogoTitle extends React.Component {
     return (
       <Image
         source={require('./assets/title_background.png')}
-        style={{ width: 100, height: 30 , flex: 1,
+        style={{ width: 100, height: 22 , flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
           resizeMode: Image.resizeMode.center}}
@@ -86,11 +86,10 @@ class LogoTitle extends React.Component {
 }
 class LoginScreen extends React.Component {
   // 登入畫面
-  
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD',}, //頂端列高度
+    headerStyle: {height: 42 ,backgroundColor:'#DCDDDD',}, //頂端列高度
     headerRight: <View></View>,
     // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
   };
@@ -129,7 +128,7 @@ class LoginScreen extends React.Component {
           style={login.btn}
           onPress={() => console.log('press me')}
           >
-          <Text style={login.btntext}>登入</Text>
+          <Text style={login.btntext}>確認送出</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -163,7 +162,7 @@ class LoginScreen extends React.Component {
       },
       input: {
         //marginTop: 10,
-        height: 40,
+        height: 44,
         alignSelf: 'stretch',
         borderRadius: 5,
         borderWidth: 1,
@@ -174,7 +173,7 @@ class LoginScreen extends React.Component {
         alignItems: 'center',
         justifyContent: 'center',
         //fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 16,
         //height: 20,
       },
       btntext: {
@@ -187,7 +186,7 @@ class LoginScreen extends React.Component {
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'white',
-        height: 40,
+        height: 44,
         borderRadius: 5,
         marginBottom: 20,
         //marginBotton: 20,
@@ -208,7 +207,7 @@ class RegisterScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD',}, //頂端列高度
+    headerStyle: {height: 42 ,backgroundColor:'#DCDDDD',}, //頂端列高度
     headerRight: <View></View>,
     // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
   };
@@ -230,7 +229,7 @@ class ScannerScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+    headerStyle: {height: 42 ,backgroundColor:'#DCDDDD'} //頂端列高度
   };
   constructor(props){
     super(props);
@@ -303,7 +302,7 @@ class HomeScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
     headerTitle: <LogoTitle/>,
-    headerStyle: {height: 30 ,backgroundColor:'#DCDDDD'} //頂端列高度
+    headerStyle: {height: 42 ,backgroundColor:'#DCDDDD'} //頂端列高度
   };
   state = {
     mapRegion: { 
