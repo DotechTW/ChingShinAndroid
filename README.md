@@ -50,7 +50,7 @@
 - 增加頁面並轉跳
     * 建立頁面的`class`
     ```JSX
-    class <Name> extends React.Componet{
+    class <Name> extends React.Component{
         //內容
     }
     ```

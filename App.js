@@ -14,12 +14,16 @@ import {
   ScrollView,
   Platform,
   TextInput,
+  AsyncStorage,
 } from 'react-native';
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import { Button, Header, Icon, ListItem, CheckBox  } from 'react-native-elements';
 import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
+import Storage from 'react-native-storage';
 
+
+//import { AsyncStorage } from 'react-native';
 // import { Button, Card } from 'react-native-material-design' ;
 //import NavigationBar from 'react-native-navbar';
 // 裝置長寬
@@ -69,6 +73,7 @@ const list = [
 
 ];
 
+  
 
 class LogoTitle extends React.Component {
   // 畫面最上面那條頂端列，只放入圖片，其餘在使用這個class時修改navigationOptions
@@ -76,7 +81,7 @@ class LogoTitle extends React.Component {
     return (
       <Image
         source={require('./assets/title_background.png')}
-        style={{ width: 100, height: 22 , flex: 1,
+        style={{ width: 50, height: 22 , flex: 1,
           alignItems: 'center',
           justifyContent: 'center',
           resizeMode: Image.resizeMode.center}}
@@ -398,9 +403,13 @@ class HomeScreen extends React.Component {
     location: {coords: { latitude: 24.175400, longitude: 120.690504}},
   };
 
+
+  
+
   componentDidMount() {
     this._getLocationAsync();
   }
+  
 
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
@@ -456,7 +465,7 @@ class HomeScreen extends React.Component {
 							 style={{flex:1 ,height: height-104 ,width: width}}
               // scalesPageToFit={true}
               />
-    </View>
+      </View>
       <View style={page.best}>
       <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
       {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
