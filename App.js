@@ -19,7 +19,7 @@ import {
 import { createStackNavigator } from 'react-navigation'; 
 import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import { Button, Header, Icon, ListItem, CheckBox  } from 'react-native-elements';
-import { BarCodeScanner, Permissions, MapView , Location , Constants } from 'expo';
+import { BarCodeScanner, Permissions, MapView , Location , Constants , Expo, SQLite,  } from 'expo';
 import Storage from 'react-native-storage';
 
 
@@ -72,7 +72,7 @@ const list = [
     
 
 ];
-
+const db = SQLite.openDatabase('db.db');
   
 
 class LogoTitle extends React.Component {
@@ -312,7 +312,51 @@ class RegisterScreen extends React.Component {
       }
       });
 
-
+      class Items extends React.Component {
+        state = {
+          items: null,
+        };
+      
+        componentDidMount() {
+          this.update();
+        }
+      
+        render() {
+          const { items } = this.state;
+          if (items === null || items.length === 0) {
+            return null;
+          }
+      
+          return (
+            <View style={{ margin: 5 }}>
+              {items.map(({ id, done, value }) => (
+                <TouchableOpacity
+                  key={id}
+                  onPress={() => this.props.onPressItem && this.props.onPressItem(id)}
+                  style={{
+                    padding: 5,
+                    backgroundColor: done ? '#aaffaa' : 'white',
+                    borderColor: 'black',
+                    borderWidth: 1,
+                  }}>
+                  <Text>{value}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          );
+        }
+      
+        update() {
+          db.transaction(tx => {
+            tx.executeSql(
+              `select * from items where done = ?;`,
+              [this.props.done ? 1 : 0],
+              (_, { rows: { _array } }) => this.setState({ items: _array })
+            );
+          });
+        }
+      }
+      
 class ScannerScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
@@ -358,12 +402,18 @@ class ScannerScreen extends React.Component {
     //   'Scan successful!',
     //   JSON.stringify(data)
     // );
+
     Alert.alert(
       'Scan successful!',
       JSON.stringify(data),
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '確定', onPress: () => console.log('OK Pressed')},
+        {text: '確定', onPress: () => {
+          
+          this.add(this.state.text);
+          this.setState({ text: null });
+          console.log('OK Pressed')}
+        },
       ],
       { cancelable: false }
     )
@@ -379,6 +429,8 @@ class ScannerScreen extends React.Component {
             <Text>Camera permission is not granted</Text> :
             <BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
+              value={this.state.text}
+              onChangeText={text => this.setState({ text })}
               style={{ height: 300, width: 300 }}//
             />
         }
@@ -401,6 +453,7 @@ class HomeScreen extends React.Component {
     },
     locationResult: null,
     location: {coords: { latitude: 24.175400, longitude: 120.690504}},
+    text: null,
   };
 
 
@@ -408,6 +461,11 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this._getLocationAsync();
+    db.transaction(tx => {
+      tx.executeSql(
+        'create table if not exists items (id integer primary key not null, done int, value text);'
+      );
+    });
   }
   
 
@@ -525,16 +583,41 @@ class HomeScreen extends React.Component {
 			  // 按鈕
         onPress={() => this.props.navigation.navigate('Scanner')}
       />
-      
+      <Text>歷史掃描</Text>
+        <View style={{ flex: 1, backgroundColor: 'gray' }}>
+          <Items
+            done={false}
+            ref={todo => (this.todo = todo)}
+            onPressItem={id =>
+              db.transaction(
+                tx => {
+                  tx.executeSql(`update items set done = 1 where id = ?;`, [id]);
+                },
+                null,
+                this.update
+              )}
+          />
+          <Items
+            done={true}
+            ref={done => (this.done = done)}
+            onPressItem={id =>
+              db.transaction(
+                tx => {
+                  tx.executeSql(`delete from items where id = ?;`, [id]);
+                },
+                null,
+                this.update
+              )}
+          />
+        </View>
         
-        <Text>
+        {/*<Text>
           Most recent barcode: {this.state.scannedBarcodeData}
         </Text>
 
-        
         <Text>
           Number of scans: {this.state.numBarcodesScanned}
-        </Text>
+        </Text>*/}
 
             
     </View>
