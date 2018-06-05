@@ -369,11 +369,13 @@ class ScannerScreen extends React.Component {
       scannedBarcodeData: 'none',
       numBarcodesScanned: 0,
       hasCameraPermission: null,
+      text: null
     };
 
   }
   componentDidMount() {
     this._requestCameraPermission();
+    
   }
 
   _requestCameraPermission = async () => {
@@ -385,19 +387,7 @@ class ScannerScreen extends React.Component {
 
   _handleBarCodeRead = data => {
     const { goBack, state } = this.props.navigation;
-    goBack();
     //掃描後返回上一頁面
-
-    
-    const newBarcodeDataCandidate = JSON.stringify(data);
-    const barcodeJustSeen =
-      newBarcodeDataCandidate === this.state.scannedBarcodeData;
-    if (!barcodeJustSeen) {
-      this.setState({
-        scannedBarcodeData: newBarcodeDataCandidate,
-        numBarcodesScanned: this.state.numBarcodesScanned + 1,
-      });
-    }
     // Alert.alert(
     //   'Scan successful!',
     //   JSON.stringify(data)
@@ -408,16 +398,12 @@ class ScannerScreen extends React.Component {
       JSON.stringify(data),
       [
         {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '確定', onPress: () => {
-          
-          this.add(this.state.text);
-          this.setState({ text: null });
-          console.log('OK Pressed')}
-        },
+        {text: '確定', onPress: () => console.log('OK Pressed')},
       ],
       { cancelable: false }
     )
     // onPress={() => this.props.navigation.navigate('Scanner')}
+    goBack();
   };
 
   render() {
@@ -429,8 +415,7 @@ class ScannerScreen extends React.Component {
             <Text>Camera permission is not granted</Text> :
             <BarCodeScanner
               onBarCodeRead={this._handleBarCodeRead}
-              value={this.state.text}
-              onChangeText={text => this.setState({ text })}
+              
               style={{ height: 300, width: 300 }}//
             />
         }
@@ -584,7 +569,27 @@ class HomeScreen extends React.Component {
         onPress={() => this.props.navigation.navigate('Scanner')}
       />
       <Text>歷史掃描</Text>
-        <View style={{ flex: 1, backgroundColor: 'gray' }}>
+        <View style={{flexDirection: 'row', }}>
+          <TextInput
+            style={{
+              flex: 1,
+              padding: 5,
+              height: 40,
+              borderColor: 'gray',
+              borderWidth: 1,
+            }}
+            placeholder="what do you need to do?" //輸入框出現的提示字
+            value={this.state.text}
+            onChangeText={text => this.setState({ text })}
+            onSubmitEditing={() => {
+              this.add(this.state.text);
+              this.setState({ text: null });
+            }}
+          />
+        </View>  
+        <ScrollView>
+        <View style={{  backgroundColor: 'gray' }}>
+          
           <Items
             done={false}
             ref={todo => (this.todo = todo)}
@@ -609,10 +614,13 @@ class HomeScreen extends React.Component {
                 this.update
               )}
           />
-        </View>
+            
+          </View>
+          </ScrollView>
         
-        {/*<Text>
-          Most recent barcode: {this.state.scannedBarcodeData}
+{/*        
+        <Text>
+          Most recent barcode: {this.state.data}
         </Text>
 
         <Text>
@@ -668,6 +676,7 @@ class HomeScreen extends React.Component {
     </IndicatorViewPager>
       </View>
     );
+    
   }
   renderTabIndicator() {
     // 首頁、排行榜、門市查詢、通知、會員
@@ -696,7 +705,27 @@ class HomeScreen extends React.Component {
     }];
     return <PagerTabIndicator tabs={tabs} />;
   }
+  add(text) {
+    db.transaction(
+      tx => {
+        tx.executeSql('insert into items (done, value) values (0, ?)', [text]);
+        tx.executeSql('select * from items', [], (_, { rows }) =>
+          console.log(JSON.stringify(rows))
+        );
+      },
+      null,
+      this.update
+    );
+  }
+
+  update = () => {
+    this.todo && this.todo.update();
+    this.done && this.done.update();
+  };
 }
+
+
+
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
