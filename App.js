@@ -377,6 +377,23 @@ class ScannerScreen extends React.Component {
     this._requestCameraPermission();
     
   }
+  add(text) {
+    db.transaction(
+      tx => {
+        tx.executeSql('insert into items (done, value) values (0, ?)', [text]);
+        tx.executeSql('select * from items', [], (_, { rows }) =>
+          console.log(JSON.stringify(rows))
+        );
+      },
+      null,
+      this.update
+    );
+  }
+
+  update = () => {
+    this.todo && this.todo.update();
+    this.done && this.done.update();
+  }
 
   _requestCameraPermission = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -392,7 +409,7 @@ class ScannerScreen extends React.Component {
     //   'Scan successful!',
     //   JSON.stringify(data)
     // );
-
+    this.add(JSON.stringify(data));
     Alert.alert(
       'Scan successful!',
       JSON.stringify(data),
@@ -423,6 +440,7 @@ class ScannerScreen extends React.Component {
     );
   }
 }
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title
@@ -588,7 +606,7 @@ class HomeScreen extends React.Component {
           />
         </View>  
         <ScrollView>
-        <View style={{  backgroundColor: 'gray' }}>
+        <View style={{  backgroundColor: 'gray', width:width, }}>
           
           <Items
             done={false}
