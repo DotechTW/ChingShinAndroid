@@ -377,6 +377,10 @@ class ScannerScreen extends React.Component {
     this._requestCameraPermission();
     
   }
+  componentWillUnmount() {
+    this.update();
+  }
+  
   add(text) {
     db.transaction(
       tx => {
@@ -410,6 +414,7 @@ class ScannerScreen extends React.Component {
     //   JSON.stringify(data)
     // );
     this.add(JSON.stringify(data));
+    this.update;
     Alert.alert(
       'Scan successful!',
       JSON.stringify(data),
@@ -469,6 +474,7 @@ class HomeScreen extends React.Component {
         'create table if not exists items (id integer primary key not null, done int, value text);'
       );
     });
+    this.update();
   }
   
 
@@ -480,6 +486,7 @@ class HomeScreen extends React.Component {
     } else {
       this._getLocationAsync();
     }
+    this.update();
   }
 
   _handleMapRegionChange = mapRegion => {
