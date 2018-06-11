@@ -179,6 +179,7 @@ class LoginScreen extends React.Component {
         justifyContent: 'center',
         //fontWeight: 'bold',
         fontSize: 16,
+        marginVertical: 5,
         //height: 20,
       },
       btntext: {
@@ -360,24 +361,49 @@ class RegisterScreen extends React.Component {
         render() {
             return (
               <ScrollView 
-              contentContainerStyle={{flex:1}}
-              keyboardDismissMode='on-drag'
-              //keyboardShouldPersistTaps={false}
+              // contentContainerStyle={{flex:1}}
+              // keyboardDismissMode='on-drag'
+              // //keyboardShouldPersistTaps={false}
               >
               <View style={person.containerUp}>
-                <Text style={person.title}>輸入個人資料</Text>
-                <Text >個人資料</Text>
-                <TextInput style={person.lighttext}></TextInput>
-                <Text >姓名</Text>
-                <TextInput style={person.lighttext}></TextInput>
-                <Text >性別</Text>
-                <TextInput style={person.lighttext}></TextInput>
-                <Text >手機號碼</Text>
-                <TextInput style={person.lighttext}></TextInput>
-                <Text >生日</Text>
-                <TextInput style={person.lighttext}></TextInput>
-                <Text >電子信箱</Text>
-                <TextInput style={person.lighttext}></TextInput>
+                <Text style={person.title}>個人資料 <Text style={{color: 'red' ,fontSize: 14}}>*必填</Text></Text>
+                <Text style={{color: 'black' ,fontSize: 14}}>(為維護用戶權益，請務必確認所有資訊填寫正確)</Text>
+                
+                <Text style={person.text}>姓名Name <Text style={{color: 'red' ,fontSize: 14}}>*</Text></Text>
+                <TextInput 
+                  style={person.lighttext} 
+                  placeholder="王大明"
+                  underlineColorAndroid='transparent'
+                />
+                
+                <Text style={person.text}>性別Gender <Text style={{color: 'red' ,fontSize: 14}}>*</Text></Text>
+                <TextInput 
+                  style={person.lighttext} 
+                  placeholder="男"
+                  underlineColorAndroid='transparent'
+                />
+                  
+                <Text style={person.text}>手機號碼Phone <Text style={{color: 'red' ,fontSize: 14}}>*</Text></Text>
+                <TextInput 
+                  style={person.lighttext} 
+                  placeholder="0912345678"
+                  underlineColorAndroid='transparent'
+                />
+                  
+                <Text style={person.text}>生日Date of Birth</Text>
+                <TextInput 
+                  style={person.lighttext} 
+                  placeholder="yyyy/mm/dd"
+                  underlineColorAndroid='transparent'
+                />
+                
+                <Text style={person.text}>電子信箱E-mail <Text style={{color: 'red' ,fontSize: 14}}>*</Text></Text>
+                <TextInput 
+                  style={person.lighttext} 
+                  placeholder="abc@gmail.com"
+                  underlineColorAndroid='transparent'
+                />
+                  
                 
                 <TouchableOpacity
                   style={person.btn}
@@ -386,17 +412,9 @@ class RegisterScreen extends React.Component {
                 <Text style={person.btntext}>送出</Text>
                 </TouchableOpacity>
                 
-                {/*<CheckBox
-                  center
-                  title='Click Here'
-                  checked={this.state.checked}
-                />
-                */}  
+                
                 
               </View>
-              {/*<View style={person.containerDown}>
-                
-              </View>*/}
             </ScrollView>
           );
         }
@@ -420,26 +438,28 @@ class RegisterScreen extends React.Component {
             },
             title: {
               fontSize: 30,
+              marginTop: 30,
               // width: 100,
               // height: 80,
               // alignSelf: 'stretch',
-              margin: 30,
+              // marginBottom: 10,
             },
             lighttext: {
               //marginTop: 10,
               height: 44,
               alignSelf: 'stretch',
+              // justifyContent: 'center',
               borderRadius: 5,
               borderWidth: 1,
-              borderColor: '#6E6661',
+              borderColor: '#827976',
             },
             text: {
               alignSelf: 'stretch',
-              alignItems: 'center',
-              justifyContent: 'center',
-              //fontWeight: 'bold',
-              fontSize: 16,
-              //height: 20,
+              // alignItems: 'center',
+              justifyContent: 'flex-start',
+              marginVertical: 5, 
+              fontSize: 14,
+              
             },
             btntext: {
               fontWeight: 'bold',
@@ -454,7 +474,7 @@ class RegisterScreen extends React.Component {
               height: 44,
               borderRadius: 5,
               marginBottom: 20,
-              //marginBotton: 20,
+              marginTop: 10,
               borderColor: '#6E6661',
               borderWidth: 1,
               borderRadius: 5,
