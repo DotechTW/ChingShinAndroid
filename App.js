@@ -596,7 +596,8 @@ class ScannerScreen extends React.Component {
       { cancelable: false }
     )
     // onPress={() => this.props.navigation.navigate('Scanner')}
-    goBack();
+    this.props.navigation.navigate('Home')// 加入試試看
+    // goBack();
   };
 
   render() {
