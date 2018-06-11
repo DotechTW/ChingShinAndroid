@@ -21,7 +21,8 @@ import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
 import { Button, Header, Icon, ListItem, CheckBox  } from 'react-native-elements';
 import { BarCodeScanner, Permissions, MapView , Location , Constants , Expo, SQLite,  } from 'expo';
 import Storage from 'react-native-storage';
-
+import LogoTitle from './screen/LogoTitle';
+import LoginScreen from './screen/LoginScreen';
 
 //import { AsyncStorage } from 'react-native';
 // import { Button, Card } from 'react-native-material-design' ;
@@ -75,133 +76,7 @@ const list = [
 const db = SQLite.openDatabase('db.db');
   
 
-class LogoTitle extends React.Component {
-  // 畫面最上面那條頂端列，只放入圖片，其餘在使用這個class時修改navigationOptions
-  render() {
-    return (
-      <Image
-        source={require('./assets/title_background.png')}
-        style={{ width: 50, height: 22 , flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-          resizeMode: Image.resizeMode.center}}
-      />
-    );
-  }
-}
-class LoginScreen extends React.Component {
-  // 登入畫面
-  static navigationOptions = {
-    // headerTitle instead of title
-    headerTitle: <LogoTitle/>,
-    headerStyle: {height: 42 ,backgroundColor:'#DCDDDD',}, //頂端列高度
-    headerRight: <View></View>,
-    // headerLeft:  <Icon name={'chevron-left'} onPress={() => console.log('返回')} />,
-  };
-  
-  //constructor(props) {
-  //   super(props);
-  //   this.state = { text: '0912456789' };
-  // }
-  render() {
-    return (
-      <ScrollView 
-      contentContainerStyle={{flex:1}}
-      keyboardDismissMode='on-drag'
-      //keyboardShouldPersistTaps={false}
-      >
-      <View style={login.containerUp}>
-        <Text style={login.title}>會員登入</Text>
-        <Text style={login.text}>手機號碼Phone</Text>
-        <TextInput
-          underlineColorAndroid='transparent'
-          ref={(username) => this.username = username}
-          onFocus={() => this.username.focus()}
-          style={login.input}
-          placeholder='0912345678'/>
-        <Text style={login.text}>密碼Password</Text>
-        <TextInput 
-          underlineColorAndroid='transparent'
-          ref={(password) => this.password = password}
-          onFocus={() => this.password.focus()}
-          style={login.input}
-          placeholder='abc@gmail.com'
-          password={true}/>
-      </View>
-      <View style={login.containerDown}>  
-        <TouchableOpacity
-          style={login.btn}
-          onPress={() => this.props.navigation.navigate('Home')}
-          >
-          <Text style={login.btntext}>確認送出</Text>
-        </TouchableOpacity>
-      </View>
-    </ScrollView>
-  );
-}
-}
 
-    const login = StyleSheet.create({
-      //登入頁面樣式
-      containerUp: {
-        flex: 1,
-        paddingLeft: 20,  //框與螢幕左側距離
-        paddingRight: 20, //框與螢幕右側距離
-        alignItems: 'center',
-        backgroundColor: 'white'
-      },
-      containerDown: {
-        flex: 1,
-        flexDirection: 'column-reverse',
-        paddingLeft: 20,
-        paddingRight: 20,
-        alignItems: 'center',
-        backgroundColor: 'white'
-      },
-      title: {
-        fontSize: 30,
-        // width: 100,
-        // height: 80,
-        // alignSelf: 'stretch',
-        margin: 30,
-      },
-      input: {
-        //marginTop: 10,
-        height: 44,
-        alignSelf: 'stretch',
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#6E6661',
-      },
-      text: {
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        justifyContent: 'center',
-        //fontWeight: 'bold',
-        fontSize: 16,
-        marginVertical: 5,
-        //height: 20,
-      },
-      btntext: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#6E6661'
-      },
-      btn: {
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        height: 44,
-        borderRadius: 5,
-        marginBottom: 20,
-        //marginBotton: 20,
-        borderColor: '#6E6661',
-				borderWidth: 1,
-				borderRadius: 5,
-								
-      }
-      });
 
 
 
@@ -548,9 +423,7 @@ class ScannerScreen extends React.Component {
     this._requestCameraPermission();
     
   }
-  componentWillUnmount() {
-    this.update();
-  }
+  
   
   add(text) {
     db.transaction(
@@ -585,18 +458,19 @@ class ScannerScreen extends React.Component {
     //   JSON.stringify(data)
     // );
     this.add(JSON.stringify(data));
-    this.update;
-    Alert.alert(
-      'Scan successful!',
-      JSON.stringify(data),
-      [
-        {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-        {text: '確定', onPress: () => console.log('OK Pressed')},
-      ],
-      { cancelable: false }
-    )
+    
+    // Alert.alert(
+    //   'Scan successful!',
+    //   JSON.stringify(data),
+    //   [
+    //     {text: '取消', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+    //     {text: '確定', onPress: () => console.log('OK Pressed')},
+    //   ],
+    //   { cancelable: false }
+    // )
     // onPress={() => this.props.navigation.navigate('Scanner')}
     this.props.navigation.navigate('Home')// 加入試試看
+    this.update;
     // goBack();
   };
 
@@ -765,7 +639,7 @@ class HomeScreen extends React.Component {
 			  // 按鈕
         onPress={() => this.props.navigation.navigate('Scanner')}
       />
-      <Text>歷史掃描</Text>
+      <Text>歷史紀錄</Text>
         <View style={{flexDirection: 'row', }}>
           <TextInput
             style={{
@@ -775,7 +649,7 @@ class HomeScreen extends React.Component {
               borderColor: 'gray',
               borderWidth: 1,
             }}
-            placeholder="what do you need to do?" //輸入框出現的提示字
+            placeholder="輸入要存入的文字" //輸入框出現的提示字
             value={this.state.text}
             onChangeText={text => this.setState({ text })}
             onSubmitEditing={() => {
