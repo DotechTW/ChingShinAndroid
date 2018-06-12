@@ -85,7 +85,7 @@ const list = [
 const db = SQLite.openDatabase('db.db');
   
 
-      class Items extends React.Component {
+class Items extends React.Component {
         state = {
           items: null,
         };
@@ -122,13 +122,13 @@ const db = SQLite.openDatabase('db.db');
         update() {
           db.transaction(tx => {
             tx.executeSql(
-              `select * from items where done = ?;`,
+              'select * from items where done = ?;',
               [this.props.done ? 1 : 0],
               (_, { rows: { _array } }) => this.setState({ items: _array })
             );
           });
         }
-      }
+}
       
 
 
@@ -180,19 +180,19 @@ class HomeScreen extends React.Component {
   };
 
   _getLocationAsync = async () => {
-   let { status } = await Permissions.askAsync(Permissions.LOCATION);
-   if (status !== 'granted') {
-     this.setState({
-       locationResult: '讀取位置的權限被拒絕',
-       location,
-     });
-   }
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        locationResult: '讀取位置的權限被拒絕',
+        location,
+      });
+    }
 
-   let location = await Location.getCurrentPositionAsync({});
-   this.setState({ locationResult: JSON.stringify(location), location, });
- };
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ locationResult: JSON.stringify(location), location, });
+  };
 
- //按下按鈕後彈出視窗
+  //按下按鈕後彈出視窗
   onPressButton() {
     Alert.alert('你已經按下按鈕囉');
   }
@@ -218,154 +218,154 @@ class HomeScreen extends React.Component {
             {/* 排行榜圖片 */}
             <Best/>
           </View>
-    <View style={page.check}>
-      <MapView
-        style={{ flex:1 }}
-            region={{ 
-              latitude: this.state.location.coords.latitude, 
-              longitude: this.state.location.coords.longitude, 
-              latitudeDelta: 0.05, 
-              longitudeDelta: 0.05 
-            }}
-          //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
-			>
-        <MapView.Marker
-          coordinate={this.state.location.coords}
-          title="我的位置"
-          //description="Some description"
-        />
-      </MapView>
-      {/* // 塞入itemlist做附近店面列表   */}
-      <ScrollView style={{flex: 1}}>
-        {
-          list.map((l, i) => (
-          <ListItem
-            key={i}
-            leftAvatar={{ source: { uri: l.avatar_url } }}
-            title={l.name}
-            subtitle={l.subtitle}
-          />
-          ))
-        }
-      </ScrollView>
+          <View style={page.check}>
+            <MapView
+              style={{ flex:1 }}
+              region={{ 
+                latitude: this.state.location.coords.latitude, 
+                longitude: this.state.location.coords.longitude, 
+                latitudeDelta: 0.05, 
+                longitudeDelta: 0.05 
+              }}
+              //onRegionChange={this._handleMapRegionChange}//鎖定不讓使用者移動
+            >
+              <MapView.Marker
+                coordinate={this.state.location.coords}
+                title="我的位置"
+                //description="Some description"
+              />
+            </MapView>
+            {/* // 塞入itemlist做附近店面列表   */}
+            <ScrollView style={{flex: 1}}>
+              {
+                list.map((l, i) => (
+                  <ListItem
+                    key={i}
+                    leftAvatar={{ source: { uri: l.avatar_url } }}
+                    title={l.name}
+                    subtitle={l.subtitle}
+                  />
+                ))
+              }
+            </ScrollView>
 
-      {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
+            {/* 這是google map API金鑰 AIzaSyD74INcdDqbZOxTy_OM3qnxg9BCEYK7UTU */}
 
 
-    </View>
-      <View style={page.notice}>
-      <Text style={{ fontSize: 30 }}>2018 集點活動</Text>
-      <Image source={require('./assets/banner-72.png')} style={{ width: Dimensions.get('window').width, height: 130,resizeMode: Image.resizeMode.stretch }} />
-      <Text />
-      <Button
-        buttonStyle={{
-								backgroundColor: 'white',
-								width: 150,
-								height: 50,
-								borderColor: '#6E6661',
-								borderWidth: 1,
-								borderRadius: 5,
-							}}
-        title="掃描集點"
-        fontSize={20}
-        color="#6E6661"
-			  // 按鈕
-        onPress={() => this.props.navigation.navigate('Scanner')}
-      />
-      <Text>歷史紀錄</Text>
-        <View style={{flexDirection: 'row', }}>
-          <TextInput
-            style={{
-              flex: 1,
-              padding: 5,
-              height: 40,
-              borderColor: 'gray',
-              borderWidth: 1,
-            }}
-            placeholder="輸入要存入的文字" //輸入框出現的提示字
-            value={this.state.text}
-            onChangeText={text => this.setState({ text })}
-            onSubmitEditing={() => {
-              this.add(this.state.text);
-              this.setState({ text: null });
-            }}
-          />
-        </View>  
-        <ScrollView>
-        <View style={{  backgroundColor: 'gray', width:width, }}>
-          
-          <Items
-            done={false}
-            ref={todo => (this.todo = todo)}
-            onPressItem={id =>
-              db.transaction(
-                tx => {
-                  tx.executeSql(`update items set done = 1 where id = ?;`, [id]);
-                },
-                null,
-                this.update
-              )}
-          />
-          <Items
-            done={true}
-            ref={done => (this.done = done)}
-            onPressItem={id =>
-              db.transaction(
-                tx => {
-                  tx.executeSql(`delete from items where id = ?;`, [id]);
-                },
-                null,
-                this.update
-              )}
-          />
-            
           </View>
-          </ScrollView>
+          <View style={page.notice}>
+            <Text style={{ fontSize: 30 }}>2018 集點活動</Text>
+            <Image source={require('./assets/banner-72.png')} style={{ width: Dimensions.get('window').width, height: 130,resizeMode: Image.resizeMode.stretch }} />
+            <Text />
+            <Button
+              buttonStyle={{
+                backgroundColor: 'white',
+                width: 150,
+                height: 50,
+                borderColor: '#6E6661',
+                borderWidth: 1,
+                borderRadius: 5,
+              }}
+              title="掃描集點"
+              fontSize={20}
+              color="#6E6661"
+              // 按鈕
+              onPress={() => this.props.navigation.navigate('Scanner')}
+            />
+            <Text>歷史紀錄</Text>
+            <View style={{flexDirection: 'row', }}>
+              <TextInput
+                style={{
+                  flex: 1,
+                  padding: 5,
+                  height: 40,
+                  borderColor: 'gray',
+                  borderWidth: 1,
+                }}
+                placeholder="輸入要存入的文字" //輸入框出現的提示字
+                value={this.state.text}
+                onChangeText={text => this.setState({ text })}
+                onSubmitEditing={() => {
+                  this.add(this.state.text);
+                  this.setState({ text: null });
+                }}
+              />
+            </View>  
+            <ScrollView>
+              <View style={{  backgroundColor: 'gray', width:width, }}>
+          
+                <Items
+                  done={false}
+                  ref={todo => (this.todo = todo)}
+                  onPressItem={id =>
+                    db.transaction(
+                      tx => {
+                        tx.executeSql('update items set done = 1 where id = ?;', [id]);
+                      },
+                      null,
+                      this.update
+                    )}
+                />
+                <Items
+                  done={true}
+                  ref={done => (this.done = done)}
+                  onPressItem={id =>
+                    db.transaction(
+                      tx => {
+                        tx.executeSql('delete from items where id = ?;', [id]);
+                      },
+                      null,
+                      this.update
+                    )}
+                />
+            
+              </View>
+            </ScrollView>
         
 
             
-    </View>
+          </View>
           <View style={page.member}>
             {/* 會員頁面 */}
             {/*<Member/>*/}
-              <Button
-                buttonStyle={{
-                  backgroundColor: 'white',
-                  width: 200,
-                  height: 70,
-                  borderColor: '#6E6661',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                }}
-                title="登入"
-                fontSize={30}
-                color="#6E6661"
-                onPress={() => this.props.navigation.navigate('Login')}
-              />
-              <Text></Text>
-              <Button
-                buttonStyle={{
-                  backgroundColor: 'white',
-                  width: 200,
-                  height: 70,
-                  borderColor: '#6E6661',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                }}
-                title="註冊"
-                fontSize={30}
-                color="#6E6661"
-                onPress={() => this.props.navigation.navigate('Register')}
-              />
-              <Text> </Text>
-              <Button
-                color="#444444"
-                backgroundColor="#FFFFFF"
-                borderRadiusColor="#444444"
-                borderRadius={10}
-                fontSize={15}
-                title="忘記密碼"
-              />
+            <Button
+              buttonStyle={{
+                backgroundColor: 'white',
+                width: 200,
+                height: 70,
+                borderColor: '#6E6661',
+                borderWidth: 1,
+                borderRadius: 5,
+              }}
+              title="登入"
+              fontSize={30}
+              color="#6E6661"
+              onPress={() => this.props.navigation.navigate('Login')}
+            />
+            <Text></Text>
+            <Button
+              buttonStyle={{
+                backgroundColor: 'white',
+                width: 200,
+                height: 70,
+                borderColor: '#6E6661',
+                borderWidth: 1,
+                borderRadius: 5,
+              }}
+              title="註冊"
+              fontSize={30}
+              color="#6E6661"
+              onPress={() => this.props.navigation.navigate('Register')}
+            />
+            <Text> </Text>
+            <Button
+              color="#444444"
+              backgroundColor="#FFFFFF"
+              borderRadiusColor="#444444"
+              borderRadius={10}
+              fontSize={15}
+              title="忘記密碼"
+            />
           </View>
         </IndicatorViewPager>
       </View>

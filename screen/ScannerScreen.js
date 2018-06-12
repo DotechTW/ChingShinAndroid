@@ -74,7 +74,7 @@ export default class ScannerScreen extends React.Component {
     //   { cancelable: false }
     // )
     // onPress={() => this.props.navigation.navigate('Scanner')}
-    this.props.navigation.navigate('Home')// 加入試試看
+    this.props.navigation.navigate('Home');// 加入試試看
     this.update;
     // goBack();
   };
@@ -103,4 +103,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-})
+});
