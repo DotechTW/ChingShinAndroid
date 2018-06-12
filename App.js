@@ -26,6 +26,10 @@ import LoginScreen from './screen/LoginScreen';
 import PersonScreen from './screen/PersonScreen';
 import RegisterScreen from './screen/RegisterScreen';
 import ScannerScreen from './screen/ScannerScreen';
+import Facebook from './screen/Facebook';
+import Best from './screen/Best';
+import Member from './screen/Member';
+
 // import Screen from './screen/Screen';
 // import Screen from './screen/Screen';
 
@@ -205,22 +209,15 @@ class HomeScreen extends React.Component {
     return (
 
       <View style={{ flex: 1, paddingTop: 0, backgroundColor: '#DCDDDD' }}>
-        {/*<Image source={require('./assets/title_background.png')} style={styles.headerImg} />*/}
-        {/* paddingTop是APP畫面最頂距離 */}
         <IndicatorViewPager style={styles.header} indicator={this.renderTabIndicator()}>
-      <View >
-        
-      {/* <Text>鑲入清心FB粉絲團網頁</Text> */}
-      <WebView source={{ uri: 'https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/chingshin1987/&tabs=timeline&width='+width+'&height='+(height-120)}}
-							 style={{flex:1 ,height: height-104 ,width: width}}
-              // scalesPageToFit={true}
-              />
-      </View>
-      <View style={page.best}>
-      <Image source={require('./assets/activity.png')} style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height-120 ,resizeMode: Image.resizeMode.stretch }} />
-      {/* 這裡要調圖片大小 這張圖480*650* 384*520 */}
-      {/*104是頂端列高度+分頁按鈕高度*/}
-    </View>
+          <View >
+            {/* 清心FB粉專 */}
+            <Facebook/>
+          </View>
+          <View style={page.best}>
+            {/* 排行榜圖片 */}
+            <Best/>
+          </View>
     <View style={page.check}>
       <MapView
         style={{ flex:1 }}
@@ -328,51 +325,12 @@ class HomeScreen extends React.Component {
 
             
     </View>
-    {/* <Text>會員頁面</Text> */}
-      <View style={page.member}>
-      <Button
-      buttonStyle={{
-								backgroundColor: 'white',
-								width: 200,
-								height: 70,
-								borderColor: '#6E6661',
-								borderWidth: 1,
-								borderRadius: 5,
-							}}
-      title="登入"
-      fontSize={30}
-      color="#6E6661"
-      onPress={() => this.props.navigation.navigate('Login')}
-      />
-      <Text />
-      <Button
-      buttonStyle={{
-								backgroundColor: 'white',
-								width: 200,
-								height: 70,
-								borderColor: '#6E6661',
-								borderWidth: 1,
-								borderRadius: 5,
-							}}
-      title="註冊"
-      fontSize={30}
-      color="#6E6661"
-      onPress={() => this.props.navigation.navigate('Register')}
-			/>
-      <Text />
-      <Button
-      color="#444444"
-      backgroundColor="#FFFFFF"
-      borderRadiusColor="#444444"
-      borderRadius={10}
-      fontSize={15}
-
-							// icon={{name: 'code'}}
-      title="忘記密碼"
-  />
-      
-    </View>
-    </IndicatorViewPager>
+    
+          <View style={page.member}>
+            {/* 會員頁面 */}
+            <Member/>
+          </View>
+        </IndicatorViewPager>
       </View>
     );
     
