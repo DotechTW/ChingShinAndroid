@@ -32,12 +32,12 @@ export default class PersonScreen extends React.Component {
   //     checked:{false},
   //   }};
   render() {
-      return (
-        <ScrollView 
-         contentContainerStyle={{flex:1}}
+    return (
+      <ScrollView 
+        contentContainerStyle={{flex:1}}
         // keyboardDismissMode='on-drag'
         // //keyboardShouldPersistTaps={false}
-        >
+      >
         <View style={person.containerUp}>
           <Text style={person.title}>個人資料 <Text style={{color: 'red' ,fontSize: 14}}>*必填</Text></Text>
           <Text style={{color: 'black' ,fontSize: 14}}>(為維護用戶權益，請務必確認所有資訊填寫正確)</Text>
@@ -82,7 +82,7 @@ export default class PersonScreen extends React.Component {
             style={person.btn}
             onPress={() => this.props.navigation.navigate('Home')}
           >
-          <Text style={person.btntext}>送出</Text>
+            <Text style={person.btntext}>送出</Text>
           </TouchableOpacity>
           
           
@@ -92,65 +92,65 @@ export default class PersonScreen extends React.Component {
     );
   }
 }
-    const person = StyleSheet.create({
-      //註冊輸入個資頁面樣式
-      containerUp: {
-        flex: 1,
-        paddingLeft: 20,  //框與螢幕左側距離
-        paddingRight: 20, //框與螢幕右側距離
-        alignItems: 'center',
-        backgroundColor: 'white'
-      },
-      containerDown: {
-        flex: 1,
-        flexDirection: 'column-reverse',
-        paddingLeft: 20,
-        paddingRight: 20,
-        alignItems: 'center',
-        backgroundColor: 'white'
-      },
-      title: {
-        fontSize: 30,
-        marginTop: 30,
-        // width: 100,
-        // height: 80,
-        // alignSelf: 'stretch',
-        // marginBottom: 10,
-      },
-      lighttext: {
-        //marginTop: 10,
-        height: 44,
-        alignSelf: 'stretch',
-        // justifyContent: 'center',
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#827976',
-      },
-      text: {
-        alignSelf: 'stretch',
-        // alignItems: 'center',
-        justifyContent: 'flex-start',
-        marginVertical: 5, 
-        fontSize: 14,
+const person = StyleSheet.create({
+  //註冊輸入個資頁面樣式
+  containerUp: {
+    flex: 1,
+    paddingLeft: 20,  //框與螢幕左側距離
+    paddingRight: 20, //框與螢幕右側距離
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+  containerDown: {
+    flex: 1,
+    flexDirection: 'column-reverse',
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: 'center',
+    backgroundColor: 'white'
+  },
+  title: {
+    fontSize: 30,
+    marginTop: 30,
+    // width: 100,
+    // height: 80,
+    // alignSelf: 'stretch',
+    // marginBottom: 10,
+  },
+  lighttext: {
+    //marginTop: 10,
+    height: 44,
+    alignSelf: 'stretch',
+    // justifyContent: 'center',
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: '#827976',
+  },
+  text: {
+    alignSelf: 'stretch',
+    // alignItems: 'center',
+    justifyContent: 'flex-start',
+    marginVertical: 5, 
+    fontSize: 14,
         
-      },
-      btntext: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: '#6E6661'
-      },
-      btn: {
-        alignSelf: 'stretch',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white',
-        height: 44,
-        borderRadius: 5,
-        marginBottom: 20,
-        marginTop: 10,
-        borderColor: '#6E6661',
-        borderWidth: 1,
-        borderRadius: 5,
+  },
+  btntext: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: '#6E6661'
+  },
+  btn: {
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    height: 44,
+    borderRadius: 5,
+    marginBottom: 20,
+    marginTop: 10,
+    borderColor: '#6E6661',
+    borderWidth: 1,
+    borderRadius: 5,
                 
-      }
-      });
+  }
+});

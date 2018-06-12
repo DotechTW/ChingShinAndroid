@@ -28,7 +28,7 @@ import RegisterScreen from './screen/RegisterScreen';
 import ScannerScreen from './screen/ScannerScreen';
 import Facebook from './screen/Facebook';
 import Best from './screen/Best';
-// import Member from './screen/Member';
+import ForgetScreen from './screen/ForgetScreen';
 
 // import Screen from './screen/Screen';
 // import Screen from './screen/Screen';
@@ -150,8 +150,6 @@ class HomeScreen extends React.Component {
     text: null,
   };
 
-
-  
 
   componentDidMount() {
     this._getLocationAsync();
@@ -365,6 +363,7 @@ class HomeScreen extends React.Component {
               borderRadius={10}
               fontSize={15}
               title="忘記密碼"
+              onPress={() => this.props.navigation.navigate('Forget')}
             />
           </View>
         </IndicatorViewPager>
@@ -426,7 +425,8 @@ const RootStack = createStackNavigator(
     Scanner: ScannerScreen,
     Login: LoginScreen,
     Register: RegisterScreen,
-    Person:PersonScreen,
+    Person: PersonScreen,
+    Forget: ForgetScreen,
   },
   {
     initialRouteName: 'Home',
