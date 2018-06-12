@@ -28,7 +28,7 @@ import RegisterScreen from './screen/RegisterScreen';
 import ScannerScreen from './screen/ScannerScreen';
 import Facebook from './screen/Facebook';
 import Best from './screen/Best';
-import Member from './screen/Member';
+// import Member from './screen/Member';
 
 // import Screen from './screen/Screen';
 // import Screen from './screen/Screen';
@@ -41,42 +41,42 @@ const { height, width } = Dimensions.get('window');
 const list = [
   {
     name: '988 公園店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    avatar_url: '',
     subtitle: '台南市北區公園路822-1號',
   },
   {
     name: '100 育德店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台南市北區育德路520號',
   },
   {
     name: '301 四平店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區后庄路71-3號',
   },
   {
     name: '358 北平店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區北平區三段151號',
   },
   {
     name: '456 后庄店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區后庄路22號',
   },
   {
     name: '456 后庄店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區后庄路22號',
   },
   {
     name: '456 后庄店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區后庄路22號',
   },
   {
     name: '456 后庄店',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: '',
     subtitle: '台中市北屯區后庄路22號',
   },
     
@@ -325,10 +325,47 @@ class HomeScreen extends React.Component {
 
             
     </View>
-    
           <View style={page.member}>
             {/* 會員頁面 */}
-            <Member/>
+            {/*<Member/>*/}
+              <Button
+                buttonStyle={{
+                  backgroundColor: 'white',
+                  width: 200,
+                  height: 70,
+                  borderColor: '#6E6661',
+                  borderWidth: 1,
+                  borderRadius: 5,
+                }}
+                title="登入"
+                fontSize={30}
+                color="#6E6661"
+                onPress={() => this.props.navigation.navigate('Login')}
+              />
+              <Text></Text>
+              <Button
+                buttonStyle={{
+                  backgroundColor: 'white',
+                  width: 200,
+                  height: 70,
+                  borderColor: '#6E6661',
+                  borderWidth: 1,
+                  borderRadius: 5,
+                }}
+                title="註冊"
+                fontSize={30}
+                color="#6E6661"
+                onPress={() => this.props.navigation.navigate('Register')}
+              />
+              <Text> </Text>
+              <Button
+                color="#444444"
+                backgroundColor="#FFFFFF"
+                borderRadiusColor="#444444"
+                borderRadius={10}
+                fontSize={15}
+                title="忘記密碼"
+              />
           </View>
         </IndicatorViewPager>
       </View>

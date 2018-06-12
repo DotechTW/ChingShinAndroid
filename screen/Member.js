@@ -1,28 +1,16 @@
 import React from 'react';
 import {
   StyleSheet,
-  Text,
+  Text, 
   View,
-  Image,
-  TouchableOpacity,
-  Linking,
-  WebView,
-  Dimensions,
-  LayoutAnimation,
-  StatusBar,
-  Alert,
-  ScrollView,
-  Platform,
-  TextInput,
-  AsyncStorage,
 } from 'react-native';
-import { createStackNavigator } from 'react-navigation'; 
-import { PagerTabIndicator, IndicatorViewPager } from 'rn-viewpager';
-import { Button, Header, Icon, ListItem, CheckBox  } from 'react-native-elements';
-import { BarCodeScanner, Permissions, MapView , Location , Constants , Expo, SQLite,  } from 'expo';
+import { Button  } from 'react-native-elements';
+
 export default class Member extends React.Component {
   // 畫面最上面那條頂端列，只放入圖片，其餘在使用這個class時修改navigationOptions
+  
   render() {
+
     return (
       <View>
         <Button
@@ -39,7 +27,7 @@ export default class Member extends React.Component {
           color="#6E6661"
           onPress={() => this.props.navigation.navigate('Login')}
         />
-        
+        <Text></Text>
         <Button
           buttonStyle={{
             backgroundColor: 'white',
@@ -54,7 +42,7 @@ export default class Member extends React.Component {
           color="#6E6661"
           onPress={() => this.props.navigation.navigate('Register')}
         />
-        <Text />
+        <Text> </Text>
         <Button
           color="#444444"
           backgroundColor="#FFFFFF"
