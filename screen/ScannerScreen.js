@@ -8,7 +8,7 @@ import { BarCodeScanner, Permissions, SQLite,  } from 'expo';
 
 import LogoTitle from './LogoTitle';
 
-// const db = SQLite.openDatabase('db.db');
+const db = SQLite.openDatabase('db.db');
 export default class ScannerScreen extends React.Component {
   static navigationOptions = {
     // headerTitle instead of title

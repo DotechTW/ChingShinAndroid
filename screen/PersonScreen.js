@@ -34,7 +34,7 @@ export default class PersonScreen extends React.Component {
   render() {
       return (
         <ScrollView 
-        // contentContainerStyle={{flex:1}}
+         contentContainerStyle={{flex:1}}
         // keyboardDismissMode='on-drag'
         // //keyboardShouldPersistTaps={false}
         >
