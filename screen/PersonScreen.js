@@ -40,7 +40,7 @@ export default class PersonScreen extends React.Component {
       >
         <View style={person.containerUp}>
           <Text style={person.title}>個人資料 <Text style={{color: 'red' ,fontSize: 14}}>*必填</Text></Text>
-          <Text style={{color: 'black' ,fontSize: 14}}>(為維護用戶權益，請務必確認所有資訊填寫正確)</Text>
+          <Text style={{color: 'black' ,fontSize: 14}}>(為維護用戶權益，請確認所有資訊填寫正確)</Text>
           
           <Text style={person.text}>姓名Name <Text style={{color: 'red' ,fontSize: 14}}>*</Text></Text>
           <TextInput 
@@ -111,7 +111,7 @@ const person = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    marginTop: 30,
+    marginTop: 10,
     // width: 100,
     // height: 80,
     // alignSelf: 'stretch',
