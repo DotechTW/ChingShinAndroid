@@ -1,4 +1,13 @@
 # chingshinRN
+|版本||
+|-|-|
+|npm|5.8.0|
+|nvm|1.1.6|
+|node|9.11.1|
+|exp|54.0.0|
+|react-native-cli|2.0.1|
+|react-native|0.55.2|
+
 ## 清心App
 * 抓圖
 * 功能釐清
