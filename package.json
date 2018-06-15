@@ -17,6 +17,9 @@
     "react-native-svg": "^6.3.1",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.0.0-rc.9",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0",
     "rn-viewpager": "^1.2.9"
   },
   "devDependencies": {
@@ -26,6 +29,7 @@
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
-    "eslint-plugin-react-native": "^3.2.1"
+    "eslint-plugin-react-native": "^3.2.1",
+    "redux-devtools": "^3.4.1"
   }
 }

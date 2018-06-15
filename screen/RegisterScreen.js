@@ -3,18 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
-  Linking,
-  WebView,
-  Dimensions,
-  LayoutAnimation,
-  StatusBar,
-  Alert,
   ScrollView,
-  Platform,
-  TextInput,
-  AsyncStorage,
 } from 'react-native';
 import LogoTitle from './LogoTitle';
 export default class RegisterScreen extends React.Component {
